@@ -68,15 +68,15 @@ function get_10_heroes(){
     $json_heroes = file_get_contents('js/json/heroes.js');
     $json_decoded_heroes = (json_decode($json_heroes, true));
 
-    $current_10_heroes = array_rand($hero_id_array, 10);
+    $current_10_heroes = array_rand($hero_id_array, 100);
 
-    for($i=0;$i<10;$i++){
+    for($i=0;$i<100;$i++){
         $hero_id = $current_10_heroes[$i];
         $current_10_heroes[$i] = get_hero($json_decoded_heroes, $hero_id);
     }
     foreach($current_10_heroes as $hero){
         $hero_no_space =  str_replace(" ", "_", $hero); ;
-        echo '<img src="img/heroes/'.$hero_no_space.'.png" alt="'.$hero.'" >';
+        echo '<img src="img/heroes/'.$hero_no_space.'.png" alt="'.$hero.'" height="50px" width="65px" >';
         echo "<br />";
     }
 }
