@@ -34,6 +34,8 @@ class user {
 
     //sets up hero list. If first time, creates hero list
     private function setup_hero_list(){
+        //TODO: Check DB for heroes list.
+
         if(count($this->heroes) < 1){
             $this->get_new_hero_list();
         }
@@ -41,15 +43,29 @@ class user {
 
     private function get_new_hero_list(){
         //get 10 heroes and store objects in $this->heroes array
-        for($i = 0; $i < 10; $i++){
-            $hero_id = rand(1,110);
-            $check = $this->check_list($hero_id);
-            if($check){
-                $this->heroes[] += new hero($hero_id);
-                break;
+        $hero_ids[] = array_rand($this->get_hero_ids(), 100);
+
+        foreach($hero_ids as $id){
+            if(count($this->heroes) == 10){
+                return;
             }
-            $i--;
+
+            $check = $this->check_list($id);
+            if($check){
+                $this->heroes[] += new hero($id);
+            }
         }
+    }
+
+    private function get_hero_ids(){
+        $json_heroes = file_get_contents('js/json/heroes.js');
+        $json_decoded_heroes = (json_decode($json_heroes, true));
+        $hero_id_array = array();
+        foreach($json_decoded_heroes['result']['heroes'] as $hero){
+            array_push($hero_id_array, $hero['id']);
+        }
+
+        return $hero_id_array;
     }
 
     private function check_list($_id){
