@@ -20,6 +20,18 @@ class hero {
 
     }
 
+    public function get_name(){
+        return $this->heroName;
+    }
+
+    public function get_image(){
+        return $this->heroImage;
+    }
+
+    public function get_id(){
+        return $this->heroID;
+    }
+
     public function set_name(){
         $json_heroes = file_get_contents('/js/heroes.js');
         $json_decoded_heroes = (json_decode($json_heroes, true));
