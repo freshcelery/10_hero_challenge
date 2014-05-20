@@ -13,7 +13,7 @@ class hero {
     private $heroID;
     private $heroImage;
 
-    private function __construct($_heroID) {
+    public function __construct($_heroID) {
         $this->heroID = $_heroID;
         $this->set_name();
         $this->set_image();
