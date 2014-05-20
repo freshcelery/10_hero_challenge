@@ -28,7 +28,7 @@ function convert_id($id){
 *$account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
 */
 function get_player_info($player_json, $account_id_32){
-    $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
+    $json_heroes = file_get_contents('js/json/heroes.js');
     $json_decoded_heroes = (json_decode($json_heroes, true));
 
     foreach($player_json['result']['matches'] as $matches){
@@ -53,7 +53,7 @@ function get_hero($heroes,$hero_id){
 }
 
 function get_10_heroes(){
-    $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
+    $json_heroes = file_get_contents('js/json/heroes.js');
     $json_decoded_heroes = (json_decode($json_heroes, true));
     $current_10_heroes = array(10);
 
