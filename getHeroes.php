@@ -53,19 +53,34 @@ function get_hero($heroes,$hero_id){
 }
 
 function get_10_heroes(){
+    $hero_id_array = get_hero_ids();
+
     $json_heroes = file_get_contents('js/json/heroes.js');
     $json_decoded_heroes = (json_decode($json_heroes, true));
-    $current_10_heroes = array(10);
+
+    $current_10_heroes = array_rand($hero_id_array, 10);
 
     for($i=0;$i<10;$i++){
-       $hero_id = rand(1,110);
-       $current_10_heroes[$i] = get_hero($json_decoded_heroes, $hero_id);
+        $hero_id = $current_10_heroes[$i];
+        echo $hero_id.'<br />';
+        $current_10_heroes[$i] = get_hero($json_decoded_heroes, $hero_id);
     }
     foreach($current_10_heroes as $hero){
         $hero_no_space =  str_replace(" ", "_", $hero); ;
         echo '<img src="img/heroes/'.$hero_no_space.'.png" alt="'.$hero.'" >';
         echo "<br />";
     }
+}
+
+function get_hero_ids(){
+    $json_heroes = file_get_contents('js/json/heroes.js');
+    $json_decoded_heroes = (json_decode($json_heroes, true));
+    $hero_id_array = array();
+    foreach($json_decoded_heroes['result']['heroes'] as $hero){
+        array_push($hero_id_array, $hero['id']);
+    }
+
+    return $hero_id_array;
 }
 
 ?>
