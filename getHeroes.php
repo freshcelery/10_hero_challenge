@@ -1,10 +1,13 @@
 <?php
+
+include "apikey.php";
+
 // Grab the user's 64 bit steam id 
 $steam_id = $_GET["steam_id"];
 //convert their steam id into a 32 bit steam id 
 $player_account_id = convert_id($steam_id);
 //grab the players last 25 matches and decode it for parsing
-$json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&account_id='.$steam_id);
+$json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' . $apikey . '&account_id='.$steam_id);
 $json_decoded_player = (json_decode($json_player, true));
 
 /*

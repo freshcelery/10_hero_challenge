@@ -1,0 +1,3 @@
+<?php
+    $apikey = "CD44403C3CEDB535EFCEFC7E64F487C6";
+?>
