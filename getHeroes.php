@@ -22,10 +22,10 @@ function convert_id($id){
 }
 
 /*
-*function to get the hero names of their most recent 100 dota2 matches
+* Function to get the hero names of their most recent 100 dota2 matches
 *
-*$player_json - The parsable json for the last 25 matches of the user
-*$account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
+* $player_json - The parsable json for the last 25 matches of the user
+* $account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
 */
 function get_player_info($player_json, $account_id_32){
     $json_heroes = file_get_contents('js/json/heroes.js');
@@ -42,7 +42,12 @@ function get_player_info($player_json, $account_id_32){
     }
 }
 
-//function to get hero's name based off of ID
+/*
+* Function to get hero's name based off of ID
+*
+* $heroes - array of heroes to search through
+* $hero_id - id of the hero we are looking for
+*/
 function get_hero($heroes,$hero_id){
     foreach($heroes['result']['heroes'] as $hero){
         if($hero['id'] == $hero_id){
@@ -52,6 +57,11 @@ function get_hero($heroes,$hero_id){
     return "could not find player name";
 }
 
+/*
+*
+* Grab the 10 random heroes for the user to win games with
+*
+*/
 function get_10_heroes(){
     $hero_id_array = get_hero_ids();
 
@@ -62,7 +72,6 @@ function get_10_heroes(){
 
     for($i=0;$i<10;$i++){
         $hero_id = $current_10_heroes[$i];
-        echo $hero_id.'<br />';
         $current_10_heroes[$i] = get_hero($json_decoded_heroes, $hero_id);
     }
     foreach($current_10_heroes as $hero){
@@ -71,7 +80,11 @@ function get_10_heroes(){
         echo "<br />";
     }
 }
-
+/*
+*
+* Grabs the hero ids from the json file so we only use valid ids
+*
+*/
 function get_hero_ids(){
     $json_heroes = file_get_contents('js/json/heroes.js');
     $json_decoded_heroes = (json_decode($json_heroes, true));
