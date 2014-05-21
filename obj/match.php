@@ -15,30 +15,74 @@ class match
     private $apikey;
     private $matchID;
     private $userID;
+    private $userID32;
     private $json_match_details;
     private $player_in_game;
     private $player_side;
     private $player_hero_id;
-    private $winner;
-    private $player_win;
+    private $winner;  //string
+    private $player_win;  //bool
+    private $start_time;
 
     public function __construct($_matchID, user $_user, $_apikey)
     {
         $this->matchID = $_matchID;
         $this->apikey = $_apikey;
         $this->userID = $_user->get_steamID();
+        $this->userID32 = $this->convert_id($_user->get_steamID());
         $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=' . $this->$apikey . '&match_id=' . $_matchID), true));
         $this->check_match_for_player();
         $this->check_player_side();
         $this->check_hero_player_id();
         $this->check_winner();
         $this->did_player_win();
+        $this->check_start_time();
+    }
+
+    public function get_start_time(){
+        return $this->start_time;
+    }
+
+    public function get_player_win(){
+        return $this->player_win;
+    }
+
+    public function get_user_id(){
+        return $this->userID;
+    }
+
+    public function get_user_id32(){
+        return $this->userID32;
+    }
+
+    public function get_winner(){
+        return $this->winner;
+    }
+
+    public function get_player_hero_id(){
+        return $this->player_hero_id;
+    }
+
+    public function get_player_side(){
+        return $this->player_side;
+    }
+
+    public function get_player_in_game(){
+        return $this->player_in_game;
+    }
+
+    public function get_match_id(){
+        return $this->matchID;
+    }
+
+    public function check_start_time(){
+        $this->start_time = $this->json_match_details['result']['start_time'];
     }
 
     public function check_match_for_player()
     {
         foreach ($this->json_match_details['result']['players'] as $players) {
-            if ($players['account_id'] == $this->userID) {
+            if ($players['account_id'] == $this->userID32) {
                 $this->player_in_game = true;
                 return;
             }
@@ -49,7 +93,7 @@ class match
     public function check_hero_player_id()
     {
         foreach ($this->json_match_details['result']['players'] as $players) {
-            if ($players['account_id'] == $this->userID) {
+            if ($players['account_id'] == $this->userID32) {
                 $this->player_hero_id = $players['hero_id'];
                 return;
             }
@@ -59,7 +103,7 @@ class match
     public function check_player_side()
     {
         foreach ($this->json_match_details['result']['players'] as $players) {
-            if ($players['account_id'] == $this->userID) {
+            if ($players['account_id'] == $this->userID32) {
                 if ($players['player_slot'] < 5) {
                     $this->player_side = "Radiant";
                 } else {
@@ -89,5 +133,14 @@ class match
         } else {
             $this->player_win = false;
         }
+    }
+
+    function convert_id($id){
+        if (strlen($id) === 17){
+            $converted = substr($id, 3) - 61197960265728;
+        }else{
+            $converted = '765'.($id + 61197960265728);
+        }
+        return (string) $converted;
     }
 }
