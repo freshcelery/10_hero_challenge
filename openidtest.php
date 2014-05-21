@@ -16,7 +16,7 @@ if (!$OpenID->mode) {
 
     if (isset($_GET['login'])) {
         $OpenID->__set('identity', 'http://steamcommunity.com/openid');
-        header("Location: {$OpenID->authUrl(true)}");
+        header("Location: {$OpenID->authUrl()}");
     }
 
     if (!isset($_SESSION['SteamAuth'])) {
