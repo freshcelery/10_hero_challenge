@@ -18,11 +18,30 @@ class user {
     private $steamID_32;
     private $heroes = Array();
     private $completed;
+    private $current_timestamp;
 
     public function __construct($_steamID, $_steamID_32){
         $this->steamID = $_steamID;
         $this->steamID_32 = $_steamID_32;
         $this->get_new_hero_list();
+    }
+
+    public function get_match_win(){
+        $json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&account_id='.$this->steamID);
+        $json_decoded_player = json_decode($json_player, true);
+
+        foreach($json_decoded_player['result']['matches'] as $matches){
+            $match_id = $matches['match_id'];
+            echo $match_id;
+            $user_win = $this->did_user_win($match_id);
+
+            if($user_win == true){
+                echo " You won <br />";
+            }
+            else{
+                echo" You lost <br />";
+            }
+        }
     }
 
     public function get_steamID(){
@@ -78,5 +97,109 @@ class user {
 
         return true;
     }
+
+    /*
+    * Get current Unix timestamp 
+    */
+    private function get_date(){
+        $date = new DateTime();
+        $this->current_timestamp = $date->getTimestamp();
+    }
+
+    /*
+    * Function to get the hero names of their most recent 100 dota2 matches
+    *
+    * $player_json - The parsable json for the last 25 matches of the user
+    * $account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
+    */
+    private function get_player_info($player_json, $account_id_32){
+        $json_heroes = file_get_contents('../js/json/heroes.js');
+        $json_decoded_heroes = (json_decode($json_heroes, true));
+
+        foreach($player_json->result->matches as $matches){
+            foreach($matches->players as $players){
+                if($players->account_id == $account_id_32){
+                    $hero_id = $players->hero_id;
+                }
+            }
+        }
+    }
+
+    private function get_match_id(){
+        $json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&account_id='.$this->steamID);
+        $json_decoded_player = (json_decode($json_heroes, true));
+
+        foreach($json_decoded_player['result']['matches'] as $matches){
+            if($matches['timestamp'] > $this->current_timestamp){
+                foreach($matches->players as $players){
+                    if($players->account_id == $account_id_32){
+                        continue;
+                    }
+                    else{
+                        return;
+                    }
+                }
+            }
+
+            return $matches->match_id;
+
+        }
+    }
+
+    private function did_user_win($match_id){
+
+        $json_match = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&match_id='.$match_id);
+        $json_decoded_match = json_decode($json_match, true);
+
+        $json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&account_id='.$this->steamID);
+        $json_decoded_player = (json_decode($json_player, true));
+
+        $radiant_win = $json_decoded_match['result']['radiant_win'];
+        
+        foreach($json_decoded_player['result']['matches'] as $matches){
+            if($matches['match_id'] == $match_id){
+                foreach($matches['players'] as $player){
+                    if($player['account_id'] == $this->steamID_32){
+                        $player_slot = $player['player_slot'];
+                    }
+                }
+            }
+        }
+
+        $player_slot = $this->find_player_side($player_slot);
+
+        //If the player was on the radiant side
+        if($player_slot == 'radiant'){
+            //If the radiant won, the player won
+            if($radiant_win == true){
+                return true;
+            }
+            //else the player lost
+            else{
+                return false;
+            }
+        }
+        //If the player was on the dire side
+        else{
+            //If the radiant lost the player won
+            if($radiant_win == false){
+                return true;
+            }
+            //else the player lost
+            else{
+                return false;
+            }
+        }
+    }
+
+
+    private function find_player_side($player_slot){
+        if($player_slot < 10){
+            return 'radiant';
+        }
+        else{
+            return 'dire';
+        }
+    }     
 
 }

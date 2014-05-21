@@ -1,18 +1,7 @@
 <?php
 
-<<<<<<< HEAD
 include 'obj/user.php';
-=======
 include "apikey.php";
->>>>>>> 678e8fb1692902b3fb9cff22dbdf5e37bfa78a98
-
-// Grab the user's 64 bit steam id 
-$steam_id = $_GET["steam_id"];
-//convert their steam id into a 32 bit steam id 
-$player_account_id = convert_id($steam_id);
-//grab the players last 25 matches and decode it for parsing
-$json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' . $apikey . '&account_id='.$steam_id);
-$json_decoded_player = (json_decode($json_player, true));
 
 /*
 *Function used to convert the user's 64 bit ID to a 32 bit ID or vice versa
@@ -27,6 +16,17 @@ function convert_id($id){
     }
     return (string) $converted;
 }
+
+// Grab the user's 64 bit steam id 
+$steam_id = $_GET["steam_id"];
+
+//convert their steam id into a 32 bit steam id 
+$player_account_id = convert_id($steam_id);
+
+//grab the players last 25 matches and decode it for parsing
+$json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=' . $apikey . '&account_id='.$steam_id);
+$json_decoded_player = (json_decode($json_player, true));
+
 $current_user = new user($steam_id, $player_account_id);
 $array_of_heroes = $current_user->get_hero_list();
 
@@ -91,6 +91,8 @@ function print_10_heroes($heroes){
     </head>
     <body>
         <?php 
+        echo "<h1> Your match win history! </h1>";
+        $current_user->get_match_win();
         echo "<h1> Your 10 heroes! </h1>";
         print_10_heroes($array_of_heroes);
         ?>
