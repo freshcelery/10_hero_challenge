@@ -9,7 +9,8 @@
 
 require 'user.php';
 
-class match {
+class match
+{
 
     private $apikey;
     private $matchID;
@@ -21,11 +22,12 @@ class match {
     private $winner;
     private $player_win;
 
-    public function __construct($_matchID, user $_user, $_apikey){
+    public function __construct($_matchID, user $_user, $_apikey)
+    {
         $this->matchID = $_matchID;
         $this->apikey = $_apikey;
         $this->userID = $_user->get_steamID();
-        $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=' . $this->$apikey . '&match_id='. $_matchID), true));
+        $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=' . $this->$apikey . '&match_id=' . $_matchID), true));
         $this->check_match_for_player();
         $this->check_player_side();
         $this->check_hero_player_id();
@@ -33,9 +35,10 @@ class match {
         $this->did_player_win();
     }
 
-    public function check_match_for_player(){
-        foreach($this->json_match_details['result']['players'] as $players){
-            if($players['account_id'] == $this->userID){
+    public function check_match_for_player()
+    {
+        foreach ($this->json_match_details['result']['players'] as $players) {
+            if ($players['account_id'] == $this->userID) {
                 $this->player_in_game = true;
                 return;
             }
@@ -43,19 +46,21 @@ class match {
         $this->player_in_game = false;
     }
 
-    public function check_hero_player_id(){
-        foreach($this->json_match_details['result']['players'] as $players){
-            if($players['account_id'] == $this->userID){
+    public function check_hero_player_id()
+    {
+        foreach ($this->json_match_details['result']['players'] as $players) {
+            if ($players['account_id'] == $this->userID) {
                 $this->player_hero_id = $players['hero_id'];
                 return;
             }
         }
     }
 
-    public function check_player_side(){
-        foreach($this->json_match_details['result']['players'] as $players){
-            if($players['account_id'] == $this->userID){
-                if($players['player_slot'] < 5){
+    public function check_player_side()
+    {
+        foreach ($this->json_match_details['result']['players'] as $players) {
+            if ($players['account_id'] == $this->userID) {
+                if ($players['player_slot'] < 5) {
                     $this->player_side = "Radiant";
                 } else {
                     $this->player_side = "Dire";
@@ -66,18 +71,20 @@ class match {
 
     }
 
-    public function check_winner(){
+    public function check_winner()
+    {
         $win = $this->json_match_details['result']['radiant_win'];
 
-        if($win){
+        if ($win) {
             $this->winner = "Radiant";
         } else {
             $this->winner = "Dire";
         }
     }
 
-    public function did_player_win(){
-        if($this->winner == $this->player_side){
+    public function did_player_win()
+    {
+        if ($this->winner == $this->player_side) {
             $this->player_win = true;
         } else {
             $this->player_win = false;
