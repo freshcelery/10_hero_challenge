@@ -12,12 +12,13 @@ class hero {
     private $heroName;
     private $heroID;
     private $heroImage;
+    private $json_heroes;
 
     public function __construct($_heroID) {
         $this->heroID = $_heroID;
+        $this->json_heroes = file_get_contents('../js/json/heroes.js');
         $this->set_name();
         $this->set_image();
-
     }
 
     public function get_name(){
@@ -33,8 +34,8 @@ class hero {
     }
 
     public function set_name(){
-        $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
-        $json_decoded_heroes = (json_decode($json_heroes, true));
+        //file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
+        $json_decoded_heroes = (json_decode($this->$json_heroes, true));
 
         foreach($json_decoded_heroes['result']['heroes'] as $hero){
             if($hero['id'] == $this->heroID){
