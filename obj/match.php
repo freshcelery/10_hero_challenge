@@ -11,20 +11,24 @@ require 'user.php';
 
 class match {
 
+    private $apikey;
     private $matchID;
     private $userID;
     private $json_match_details;
     private $player_in_game;
     private $player_side;
+    private $player_hero_id;
     private $winner;
     private $player_win;
 
-    public function __construct($_matchID, user $_user){
+    public function __construct($_matchID, user $_user, $_apikey){
         $this->matchID = $_matchID;
+        $this->apikey = $_apikey;
         $this->userID = $_user->get_steamID();
-        $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&match_id='. $_matchID), true));
+        $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=' . $this->$apikey . '&match_id='. $_matchID), true));
         $this->check_match_for_player();
         $this->check_player_side();
+        $this->check_hero_player_id();
         $this->check_winner();
         $this->did_player_win();
     }
@@ -37,6 +41,15 @@ class match {
             }
         }
         $this->player_in_game = false;
+    }
+
+    public function check_hero_player_id(){
+        foreach($this->json_match_details['result']['players'] as $players){
+            if($players['account_id'] == $this->userID){
+                $this->player_hero_id = $players['hero_id'];
+                return;
+            }
+        }
     }
 
     public function check_player_side(){
