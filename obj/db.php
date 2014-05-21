@@ -13,14 +13,16 @@ class config
     public $password;
     public $database;
     public $prefix;
+    public $connector;
 
-    function __construct($hostname = NULL, $username = NULL, $password = NULL, $database = NULL, $prefix = NULL)
+    function __construct($hostname = NULL, $username = NULL, $password = NULL, $database = NULL, $prefix = NULL, $connector = NULL)
     {
         $this->hostname = !empty($hostname) ? $hostname : "";
         $this->username = !empty($username) ? $username : "";
         $this->password = !empty($password) ? $password : "";
         $this->database = !empty($database) ? $database : "";
         $this->prefix = !empty($prefix) ? $prefix : "";
+        $this->connector = !empty($connector) ? $connector : "mysqli";
     }
 
     function __destruct()
@@ -36,7 +38,7 @@ class db
     private $lastQuery;
     private $config;
 
-    public function __construct(config $config)
+    function __construct($config)
     {
         $this->config = $config;
     }
@@ -68,9 +70,6 @@ class db
 
     public function query($query)
     {
-        $query = str_replace("}", "", $query);
-        $query = str_replace("{", $this->config->prefix, $query);
-
         try {
             if (empty($this->connection)) {
                 $this->openConnection();
