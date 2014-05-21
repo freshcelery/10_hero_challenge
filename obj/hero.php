@@ -8,15 +8,16 @@
  */
 
 class hero {
-
     private $heroName;
     private $heroID;
     private $heroImage;
+    private $hero_win;
     private $json_heroes;
 
     public function __construct($_heroID) {
         $this->heroID = $_heroID;
         $this->json_heroes = file_get_contents('../js/json/heroes.js');
+        $this->hero_win = false;
         $this->set_name();
         $this->set_image();
     }
@@ -31,6 +32,20 @@ class hero {
 
     public function get_id(){
         return $this->heroID;
+    }
+
+    public function get_hero_win(){
+        return $this->hero_win;
+    }
+
+    //manual setting hero win
+    public function set_hero_win($_bool){
+        if(!is_bool($_bool)) return;
+
+        if($_bool){
+            $this->hero_win = true;
+        }
+        $this->hero_win = false;
     }
 
     public function set_name(){
