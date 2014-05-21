@@ -33,7 +33,7 @@ class hero {
     }
 
     public function set_name(){
-        $json_heroes = file_get_contents('/js/heroes.js');
+        $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
         $json_decoded_heroes = (json_decode($json_heroes, true));
 
         foreach($json_decoded_heroes['result']['heroes'] as $hero){
@@ -45,6 +45,6 @@ class hero {
 
     public function set_image(){
         $output  = str_replace(" ", "_", $this->heroName);
-        $this->heroImage = "/img/heroes/" . $output . ".png";
+        $this->heroImage = "img/heroes/" . $output . ".png";
     }
 }

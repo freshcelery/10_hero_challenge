@@ -1,4 +1,7 @@
 <?php
+
+include 'obj/user.php';
+
 // Grab the user's 64 bit steam id 
 $steam_id = $_GET["steam_id"];
 //convert their steam id into a 32 bit steam id 
@@ -20,6 +23,9 @@ function convert_id($id){
     }
     return (string) $converted;
 }
+$current_user = new user($steam_id, $player_account_id);
+$array_of_heroes = $current_user->get_hero_list();
+
 
 /*
 * Function to get the hero names of their most recent 100 dota2 matches
@@ -42,20 +48,6 @@ function get_player_info($player_json, $account_id_32){
     }
 }
 
-/*
-* Function to get hero's name based off of ID
-*
-* $heroes - array of heroes to search through
-* $hero_id - id of the hero we are looking for
-*/
-function get_hero($heroes,$hero_id){
-    foreach($heroes['result']['heroes'] as $hero){
-        if($hero['id'] == $hero_id){
-            return $hero['localized_name'];
-        }
-    }
-    return "could not find player name";
-}
 
 /*
 *
@@ -80,20 +72,12 @@ function get_10_heroes(){
         echo "<br />";
     }
 }
-/*
-*
-* Grabs the hero ids from the json file so we only use valid ids
-*
-*/
-function get_hero_ids(){
-    $json_heroes = file_get_contents('js/json/heroes.js');
-    $json_decoded_heroes = (json_decode($json_heroes, true));
-    $hero_id_array = array();
-    foreach($json_decoded_heroes['result']['heroes'] as $hero){
-        array_push($hero_id_array, $hero['id']);
-    }
 
-    return $hero_id_array;
+function print_10_heroes($heroes){
+    foreach($heroes as $hero){
+        echo '<img src="'.$hero->get_image().'" alt="'.$hero->get_name().'" height="50px" width="65px" >';
+        echo "<br />";
+    }
 }
 
 ?>
@@ -103,10 +87,8 @@ function get_hero_ids(){
     </head>
     <body>
         <?php 
-        echo "<h1> Your last played heroes! </h1>";
-        get_player_info($json_decoded_player, $player_account_id);
         echo "<h1> Your 10 heroes! </h1>";
-        get_10_heroes();
+        print_10_heroes($array_of_heroes);
         ?>
     </body>
 </html>

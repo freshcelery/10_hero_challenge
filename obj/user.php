@@ -15,12 +15,14 @@ include 'hero.php';
 class user {
 
     private $steamID;
+    private $steamID_32;
     private $heroes = Array();
     private $completed;
 
-    public function __construct($_steamID){
+    public function __construct($_steamID, $_steamID_32){
         $this->steamID = $_steamID;
-        $this->setup_hero_list();
+        $this->steamID_32 = $_steamID_32;
+        $this->get_new_hero_list();
     }
 
     public function get_steamID(){
@@ -31,6 +33,7 @@ class user {
     public function get_hero_list(){
         return $this->heroes;
     }
+
 
     //sets up hero list. If first time, creates hero list
     private function setup_hero_list(){
@@ -43,22 +46,20 @@ class user {
 
     private function get_new_hero_list(){
         //get 10 heroes and store objects in $this->heroes array
-        $hero_ids[] = array_rand($this->get_hero_ids(), 100);
+        $hero_ids = array_rand($this->get_hero_ids(), 10);
 
         foreach($hero_ids as $id){
-            if(count($this->heroes) == 10){
-                return;
-            }
 
             $check = $this->check_list($id);
             if($check){
-                $this->heroes[] += new hero($id);
+                $current_hero = new hero($id);
+                array_push($this->heroes, $current_hero);
             }
         }
     }
 
     private function get_hero_ids(){
-        $json_heroes = file_get_contents('js/json/heroes.js');
+        $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
         $json_decoded_heroes = (json_decode($json_heroes, true));
         $hero_id_array = array();
         foreach($json_decoded_heroes['result']['heroes'] as $hero){
@@ -77,4 +78,5 @@ class user {
 
         return true;
     }
+
 }
