@@ -38,7 +38,7 @@ if (!$OpenID->mode) {
             fclose($buffer);
         }
 
-        header("Location: index.php");
+        header("Location: openidtest.php");
     }
 }
 if (isset($_SESSION['SteamAuth'])) {
@@ -48,12 +48,17 @@ if (isset($_SESSION['SteamAuth'])) {
 if (isset($_GET['logout'])) {
     unset($_SESSION['SteamAuth']);
     unset($_SESSION['SteamID64']);
-    header("Location: index.php");
+    header("Location: openidtest.php");
+}
+if(isset($_SESSION['SteamID64'])){
+	$SteamID64= ltrim ($_SESSION['SteamID64'],'/');
+	$user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$apikey."&steamids=".$SteamID64), true);
 }
 
-$user = json_decode(file_get_contents("cache/{$_SESSION['SteamID64']}.json"), true);
-
 echo $login;
-echo "<h1> {$user['response']['players']['personaname']} </h1>";
-echo "</ br>";
-echo "<img src='" . $user['response']['players']['avatarfull']  ."' alt='avatar'/>";
+
+if(isset($user)){
+	echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
+	echo "</ br>";
+	echo "<img src='" . $user['response']['players'][0]['avatarfull']  ."' alt='avatar'/>";
+}
