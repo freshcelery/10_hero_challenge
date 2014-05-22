@@ -10,7 +10,7 @@
  *
  */
 
-include 'hero.php';
+include_once 'hero.php';
 
 class user {
 
@@ -23,7 +23,30 @@ class user {
     public function __construct($_steamID, $_steamID_32){
         $this->steamID = $_steamID;
         $this->steamID_32 = $_steamID_32;
-        $this->get_new_hero_list();
+        //$this->get_new_hero_list();
+    }
+
+    public function get_steamID(){
+        return $this->steamID;
+    }
+
+    public function get_steamID_32(){
+        return $this->steamID_32;
+    }
+
+    //return a array of hero objects
+    public function get_hero_list(){
+        return $this->heroes;
+    }
+
+
+    //sets up hero list. If first time, creates hero list
+    public function setup_hero_list(){
+        //TODO: Check DB for heroes list.
+
+        if(count($this->heroes) < 1){
+            $this->get_new_hero_list();
+        }
     }
 
     public function get_match_win(){
@@ -41,25 +64,6 @@ class user {
             else{
                 echo" You lost <br />";
             }
-        }
-    }
-
-    public function get_steamID(){
-        return $this->steamID;
-    }
-
-    //return a array of hero objects
-    public function get_hero_list(){
-        return $this->heroes;
-    }
-
-
-    //sets up hero list. If first time, creates hero list
-    private function setup_hero_list(){
-        //TODO: Check DB for heroes list.
-
-        if(count($this->heroes) < 1){
-            $this->get_new_hero_list();
         }
     }
 
@@ -113,7 +117,7 @@ class user {
     * $account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
     */
     private function get_player_info($player_json, $account_id_32){
-        $json_heroes = file_get_contents('../js/json/heroes.js');
+        $json_heroes = file_get_contents('../js/json/heroes.json');
         $json_decoded_heroes = (json_decode($json_heroes, true));
 
         foreach($player_json->result->matches as $matches){

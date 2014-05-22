@@ -16,7 +16,7 @@ class hero {
 
     public function __construct($_heroID) {
         $this->heroID = $_heroID;
-        $this->json_heroes = file_get_contents('/js/json/heroes.js');
+        $this->json_heroes = json_decode(file_get_contents('js/json/heroes.json'),true);
         $this->hero_win = false;
         $this->set_name();
         $this->set_image();
@@ -49,10 +49,7 @@ class hero {
     }
 
     public function set_name(){
-        //file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
-        $json_decoded_heroes = (json_decode($this->$json_heroes, true));
-
-        foreach($json_decoded_heroes['result']['heroes'] as $hero){
+        foreach($this->json_heroes['result']['heroes'] as $hero){
             if($hero['id'] == $this->heroID){
                 $this->heroName = $hero['localized_name'];
             }
