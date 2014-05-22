@@ -16,7 +16,7 @@ class hero {
 
     public function __construct($_heroID) {
         $this->heroID = $_heroID;
-        $this->json_heroes = file_get_contents('../js/json/heroes.js');
+        $this->json_heroes = file_get_contents('/js/json/heroes.js');
         $this->hero_win = false;
         $this->set_name();
         $this->set_image();
