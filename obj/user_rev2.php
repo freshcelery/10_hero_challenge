@@ -30,6 +30,7 @@ class user_rev2
         }
     }
 
+    //region Getters
     public function get_steam_id_64()
     {
         return $this->steam_id_64;
@@ -44,6 +45,7 @@ class user_rev2
     {
         return $this->heroes;
     }
+    //endregion
 
     public function get_new_hero_list()
     {

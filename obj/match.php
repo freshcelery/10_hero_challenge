@@ -39,6 +39,7 @@ class match
         $this->check_start_time();
     }
 
+    //region Getters
     public function get_start_time(){
         return $this->start_time;
     }
@@ -74,7 +75,9 @@ class match
     public function get_match_id(){
         return $this->matchID;
     }
+    //endregion
 
+    //region Checks
     public function check_start_time(){
         $this->start_time = $this->json_match_details['result']['start_time'];
     }
@@ -125,7 +128,9 @@ class match
             $this->winner = "Dire";
         }
     }
+    //endregion
 
+    //region Misc Functions
     public function did_player_win()
     {
         if ($this->winner == $this->player_side) {
@@ -134,4 +139,5 @@ class match
             $this->player_win = false;
         }
     }
+    //endregion
 }
