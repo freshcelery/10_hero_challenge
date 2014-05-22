@@ -38,7 +38,7 @@ $array_of_heroes = $current_user->get_hero_list();
 * $account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
 */
 function get_player_info($player_json, $account_id_32){
-    $json_heroes = file_get_contents('js/json/heroes.js');
+    $json_heroes = file_get_contents('js/json/heroes.json');
     $json_decoded_heroes = (json_decode($json_heroes, true));
 
     foreach($player_json['result']['matches'] as $matches){
@@ -61,7 +61,7 @@ function get_player_info($player_json, $account_id_32){
 function get_10_heroes(){
     $hero_id_array = get_hero_ids();
 
-    $json_heroes = file_get_contents('js/json/heroes.js');
+    $json_heroes = file_get_contents('js/json/heroes.json');
     $json_decoded_heroes = (json_decode($json_heroes, true));
 
     $current_10_heroes = array_rand($hero_id_array, 100);

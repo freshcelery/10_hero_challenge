@@ -6,8 +6,14 @@
  * Time: 3:26 PM
  */
 
-include_once "obj/user.php";
+include_once "obj/user_rev2.php";
+include_once "obj/hero.php";
 
+function microtime_float()
+{
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
 
 if(!isset($_POST['submit'])){
     echo "
@@ -16,14 +22,26 @@ if(!isset($_POST['submit'])){
         <input type='submit' value='Submit' name='submit'/>
     </form>";
 } else {
-    if (strlen($_POST['steamid']) === 17){
-        $steamID64 = $_POST['steamid'];
-        $steamID32 = substr($_POST['steamid'], 3) - 61197960265728;
-    } else {
-        $steamID32 = $_POST['steamid'];
-        $steamID64 = '765'.($_POST['steamid'] + 61197960265728);
+    $user = new user_rev2($_POST['steamid']);
+    echo $user->get_steam_id_32();
+    echo "<br>";
+    echo $user->get_steam_id_64();
+    echo "<br>";
+
+    $json_decoded_heroes = json_decode(file_get_contents('js/json/heroes.json'), true);
+    $hero_id_array = array();
+    foreach ($json_decoded_heroes['result']['heroes'] as $hero) {
+        array_push($hero_id_array, $hero['id']);
+    }
+    print_r($hero_id_array);
+
+    $hero_ids = array_rand($hero_id_array, 10);
+    $heroes = array();
+    foreach ($hero_ids as $id) {
+        $current_hero = new hero($id);
+        array_push($heroes, $current_hero);
     }
 
-    $user = new user($steamID64, $steamID32);
-    echo $user->get_steamID();
+    echo "<br>";
+    print_r($heroes);
 }
