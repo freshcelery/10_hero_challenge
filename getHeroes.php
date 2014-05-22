@@ -28,7 +28,6 @@ $json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/G
 $json_decoded_player = (json_decode($json_player, true));
 
 $current_user = new user($steam_id, $player_account_id);
-$array_of_heroes = $current_user->get_hero_list();
 
 
 /*
@@ -58,28 +57,16 @@ function get_player_info($player_json, $account_id_32){
 * Grab the 10 random heroes for the user to win games with
 *
 */
-function get_10_heroes(){
-    $hero_id_array = get_hero_ids();
-
+function get_10_heroes($current_user){
+    $current_user->get_new_hero_list();
     $json_heroes = file_get_contents('js/json/heroes.json');
     $json_decoded_heroes = (json_decode($json_heroes, true));
+    $current_10_heroes = $current_user->get_hero_list();
 
-    $current_10_heroes = array_rand($hero_id_array, 100);
-
-    for($i=0;$i<100;$i++){
-        $hero_id = $current_10_heroes[$i];
-        $current_10_heroes[$i] = get_hero($json_decoded_heroes, $hero_id);
-    }
     foreach($current_10_heroes as $hero){
+        $hero = $hero->get_name();
         $hero_no_space =  str_replace(" ", "_", $hero); ;
         echo '<img src="img/heroes/'.$hero_no_space.'.png" alt="'.$hero.'" height="50px" width="65px" >';
-        echo "<br />";
-    }
-}
-
-function print_10_heroes($heroes){
-    foreach($heroes as $hero){
-        echo '<img src="'.$hero->get_image().'" alt="'.$hero->get_name().'" height="50px" width="65px" >';
         echo "<br />";
     }
 }
@@ -90,11 +77,11 @@ function print_10_heroes($heroes){
     <head>
     </head>
     <body>
+    <div id="heroes">
         <?php 
-        echo "<h1> Your match win history! </h1>";
-        $current_user->get_match_win();
         echo "<h1> Your 10 heroes! </h1>";
-        print_10_heroes($array_of_heroes);
+        get_10_heroes($current_user);
         ?>
+    </div>
     </body>
 </html>

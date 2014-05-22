@@ -67,7 +67,7 @@ class user {
         }
     }
 
-    private function get_new_hero_list(){
+    public function get_new_hero_list(){
         //get 10 heroes and store objects in $this->heroes array
         $hero_ids = array_rand($this->get_hero_ids(), 10);
 
