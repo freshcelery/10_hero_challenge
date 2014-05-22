@@ -24,12 +24,12 @@ class match
     private $player_win;  //bool
     private $start_time;
 
-    public function __construct($_matchID, user $_user, $_apikey)
+    public function __construct($_matchID, user_rev2 $_user, $_apikey)
     {
         $this->matchID = $_matchID;
         $this->apikey = $_apikey;
-        $this->userID = $_user->get_steamID();
-        $this->userID32 = $this->convert_id($_user->get_steamID());
+        $this->userID = $_user->get_steam_id_64();
+        $this->userID32 = $_user->get_steam_id_32();
         $this->json_match_details = (json_decode(file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=' . $this->$apikey . '&match_id=' . $_matchID), true));
         $this->check_match_for_player();
         $this->check_player_side();
@@ -133,14 +133,5 @@ class match
         } else {
             $this->player_win = false;
         }
-    }
-
-    function convert_id($id){
-        if (strlen($id) === 17){
-            $converted = substr($id, 3) - 61197960265728;
-        }else{
-            $converted = '765'.($id + 61197960265728);
-        }
-        return (string) $converted;
     }
 }
