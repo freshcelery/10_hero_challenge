@@ -16,11 +16,8 @@ class db
         $this->$db = new PDO('mysql:host=dota.keeganbailey.com;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
     }
 
-    public function query($_q){
-        try{
-            return $this->db->query($_q);
-        } catch (exception $e) {
-            return $e->getMessage();
-        }
+    function getData($db) {
+        $stmt = $this->db->query($db);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
