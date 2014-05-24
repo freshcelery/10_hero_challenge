@@ -66,12 +66,12 @@ if (isset($_SESSION['SteamID64'])) {
     <script src="js/bootstrap.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="./index.php"><img src="./img/logo.png" height="70" width="70"></a>
+            <a class="brand" href="./index.php"><img src="./img/logo.png" height="50" width="50"></a>
             <ul class="nav">
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Leaderboard</a></li>
@@ -84,7 +84,7 @@ if (isset($_SESSION['SteamID64'])) {
     </div>
 </div>
 <!-- End Navbar ============================================== -->
-
+<hr>
 <div class="jumbotron masthead">
     <div class="container">
         <?php
@@ -98,25 +98,7 @@ if (isset($_SESSION['SteamID64'])) {
         </form>";
             echo "<div id='10_heroes'></div>";
         } else {
-            echo  '<h1>DOTA 10 Hero Challenge</h1><p>Please log in using Steam</p>';
-        }
-        ?>
-    </div>
-</div>
-<div class="jumbotron masthead">
-    <div class="container">
-        <?php
-        if (isset($user)) {
-            echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
-            echo "</ br>";
-            echo "<img src='" . $user['response']['players'][0]['avatarfull'] . "' alt='avatar'/>";
-            echo "<form action='getHeroes.php' method='get'>
-            <input type='hidden' name='steam_id' value='" . $SteamID64 . "'/>
-            <input class='submit' type='submit' value='Get 10 Heroes'>
-        </form>";
-            echo "<div id='10_heroes'></div>";
-        } else {
-            echo  '<h1>DOTA 10 Hero Challenge</h1><p>Please log in using Steam</p>';
+            echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
         }
         ?>
     </div>
