@@ -7,6 +7,6 @@
  *  PDO
  */
 
-$constring = 'mysql:host=dota.keeganbailey.com;dbname=dotakeeg_admin';
+$constring = 'mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8';
 $user = "dotakeeg_admin";
 $password = "dota10";
