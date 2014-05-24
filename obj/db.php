@@ -13,7 +13,7 @@ class db
 
     public function __construct()
     {
-        $this->$db = new PDO('mysql:host=dota.keeganbailey.com;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
+        $this->$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
     }
 
     function getData($db) {
