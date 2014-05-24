@@ -1,9 +1,13 @@
 <?php
 
 /**
+
  * Created by PhpStorm.
+
  * User: Keegan
+
  * Date: 21/05/14
+
  * Time: 12:14 PM
 
  */
@@ -55,15 +59,37 @@ if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $apikey . "&steamids=" . $SteamID64), true);
 }
+
 echo $login;
 
+
+
 if (isset($user)) {
+
     echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
+
     echo "</ br>";
+
     echo "<img src='" . $user['response']['players'][0]['avatarfull'] . "' alt='avatar'/>";
+
+
+
     echo "<form action='getHeroes.php' method='get'>
+
             <input type='hidden' name='steam_id' value='" . $SteamID64 . "'/>
+
             <input class='submit' type='submit' value='Get 10 Heroes'>
+
         </form>";
+
+
+
     echo "<div id='10_heroes'></div>";
+
 }
+
+?>
+
+</body>
+
+</html>

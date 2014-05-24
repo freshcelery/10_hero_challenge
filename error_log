@@ -1,0 +1,528 @@
+[23-May-2014 00:11:07] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:07] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:13] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:13] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:14] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 25
+[23-May-2014 00:11:15] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:15] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 19
+[23-May-2014 00:11:15] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:17) in /home/dotakeeg/public_html/openidtest.php on line 25
+[23-May-2014 00:13:13] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:13:13] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:14:04] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:14:04] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:14:04] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 49
+[23-May-2014 00:14:07] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:14:07] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 37
+[23-May-2014 00:14:07] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dotakeeg/public_html/openidtest.php:33) in /home/dotakeeg/public_html/openidtest.php on line 49
+[23-May-2014 16:51:52] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/dotakeeg/public_html/obj/user.php on line 440
+[23-May-2014 16:52:49] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/dotakeeg/public_html/obj/user.php on line 440
+[23-May-2014 16:53:06] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/dotakeeg/public_html/obj/user.php on line 440
+[23-May-2014 16:54:03] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/dotakeeg/public_html/obj/user.php on line 161
+[23-May-2014 16:54:22] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/dotakeeg/public_html/obj/user.php on line 161
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:56:14] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 435
+[23-May-2014 16:56:14] PHP Catchable fatal error:  Object of class hero could not be converted to string in /home/dotakeeg/public_html/obj/user.php on line 451
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Illegal offset type in /home/dotakeeg/public_html/obj/user.php on line 162
+[23-May-2014 16:57:24] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 435
+[23-May-2014 16:57:24] PHP Catchable fatal error:  Object of class hero could not be converted to string in /home/dotakeeg/public_html/obj/user.php on line 451
+[23-May-2014 16:58:32] PHP Fatal error:  Call to a member function get_id() on a non-object in /home/dotakeeg/public_html/obj/user.php on line 204
+[23-May-2014 16:59:46] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 434
+[23-May-2014 16:59:50] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:01:10] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 274
+[23-May-2014 17:01:13] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 434
+[23-May-2014 17:01:16] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:01:55] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 274
+[23-May-2014 17:01:58] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 434
+[23-May-2014 17:02:00] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 276
+[23-May-2014 17:03:33] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 432
+[23-May-2014 17:03:36] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:04:17] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 432
+[23-May-2014 17:04:19] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:05:20] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 432
+[23-May-2014 17:05:20] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 447
+[23-May-2014 17:05:23] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:08:38] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 432
+[23-May-2014 17:08:38] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 447
+[23-May-2014 17:08:40] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:40] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 289
+[23-May-2014 17:10:43] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 434
+[23-May-2014 17:10:43] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 449
+[23-May-2014 17:10:45] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:11:24] PHP Fatal error:  Call to undefined function  hero_played() in /home/dotakeeg/public_html/obj/user.php on line 437
+[23-May-2014 17:12:30] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 423
+[23-May-2014 17:12:30] PHP Fatal error:  Call to undefined function  did_user_win() in /home/dotakeeg/public_html/obj/user.php on line 439
+[23-May-2014 17:23:59] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/dotakeeg/public_html/obj/user.php on line 303
+[23-May-2014 17:30:40] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:33:34] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:34:05] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:34:40] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:35:42] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:36:31] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:37:04] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:37:35] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:47:35] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:49:35] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:50:35] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:52:03] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:53:27] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:54:05] PHP Warning:  array_push() [<a href='function.array-push'>function.array-push</a>]: First argument should be an array in /home/dotakeeg/public_html/obj/user.php on line 291
+[23-May-2014 17:54:10] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:54:19] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:19] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:19] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:19] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:20] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:20] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:20] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:21] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:21] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:21] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:22] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:22] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:22] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:23] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:23] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:23] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:24] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:24] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:25] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=8) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:26] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:26] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:26] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:26] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:26] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:27] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:27] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:27] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:28] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:28] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:28] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:29] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:29] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:29] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:30] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:30] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:30] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:31] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:31] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:31] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:32] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:32] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:32] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:33] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:33] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:33] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:34] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:34] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:34] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:35] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=9) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:35] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:35] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:36] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:36] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:36] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:36] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:37] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:37] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:38] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:38] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:38] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:38] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:39] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:39] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:39] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:40] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:40] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:40] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:41] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:41] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:41] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:41] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:41] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:42] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:42] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:42] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:42] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:43] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:43] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:43] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=10) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:44] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:44] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:44] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=11) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:44] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:44] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:45] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=11) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:45] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;account_id=76561198023854426) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:54:45] PHP Warning:  Invalid argument supplied for foreach() in /home/dotakeeg/public_html/obj/user.php on line 322
+[23-May-2014 17:54:47] PHP Warning:  file_get_contents(https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&amp;match_id=11) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/dotakeeg/public_html/obj/user.php on line 306
+[23-May-2014 17:54:53] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/dotakeeg/public_html/obj/user.php on line 312
+[23-May-2014 17:56:26] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:57:58] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:58:39] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 17:59:10] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:00:33] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:01:17] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:03:13] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:05:22] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:06:09] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:07:05] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:07:49] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:08:55] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:09:42] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:10:39] PHP Fatal error:  Call to undefined method user::matches_after_timestamp() in /home/dotakeeg/public_html/obj/user.php on line 51
+[23-May-2014 18:11:19] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:11:39] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:12:43] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:15:02] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:15:18] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:15:43] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:15:58] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:17:06] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:18:09] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:18:40] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:19:13] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:20:00] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:20:24] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/dotakeeg/public_html/obj/user.php on line 436
+[23-May-2014 18:20:53] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:21:47] PHP Warning:  Cannot use a scalar value as an array in /home/dotakeeg/public_html/obj/user.php on line 439
+[23-May-2014 18:21:51] PHP Warning:  Cannot use a scalar value as an array in /home/dotakeeg/public_html/obj/user.php on line 439
+[23-May-2014 18:22:18] PHP Warning:  Cannot use a scalar value as an array in /home/dotakeeg/public_html/obj/user.php on line 439
+[23-May-2014 18:22:20] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:23:28] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:29:25] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 18:32:26] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
+[23-May-2014 20:38:52] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:45:50] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:45:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:47:14] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:47:16] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:47:55] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/db_test.php:2
+Stack trace:
+#0 /home/dotakeeg/public_html/db_test.php(2): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 {main}
+  thrown in /home/dotakeeg/public_html/db_test.php on line 2
+[23-May-2014 20:48:16] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/db_test.php:2
+Stack trace:
+#0 /home/dotakeeg/public_html/db_test.php(2): PDO->__construct('mysql:host=192....', 'dotakeeg_admin', 'dota10')
+#1 {main}
+  thrown in /home/dotakeeg/public_html/db_test.php on line 2
+[23-May-2014 20:48:17] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/db_test.php:2
+Stack trace:
+#0 /home/dotakeeg/public_html/db_test.php(2): PDO->__construct('mysql:host=192....', 'dotakeeg_admin', 'dota10')
+#1 {main}
+  thrown in /home/dotakeeg/public_html/db_test.php on line 2
+[23-May-2014 20:50:44] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'dotakeeg_admin'@'192.185.105.233' (using password: YES)' in /home/dotakeeg/public_html/obj/db.php:16
+Stack trace:
+#0 /home/dotakeeg/public_html/obj/db.php(16): PDO->__construct('mysql:host=dota...', 'dotakeeg_admin', 'dota10')
+#1 /home/dotakeeg/public_html/db_test.php(11): db->__construct()
+#2 {main}
+  thrown in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:51:21] PHP Fatal error:  Cannot access empty property in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:52:39] PHP Fatal error:  Cannot access empty property in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:52:41] PHP Fatal error:  Cannot access empty property in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:54:27] PHP Fatal error:  Cannot access empty property in /home/dotakeeg/public_html/obj/db.php on line 16
+[23-May-2014 20:57:43] PHP Fatal error:  Using $this when not in object context in /home/dotakeeg/public_html/db_test.php on line 16
+[23-May-2014 20:58:18] PHP Fatal error:  Call to a member function query() on a non-object in /home/dotakeeg/public_html/db_test.php on line 16
+[23-May-2014 20:59:55] PHP Fatal error:  Call to a member function query() on a non-object in /home/dotakeeg/public_html/db_test.php on line 28
+[24-May-2014 14:20:42] PHP Fatal error:  Call to a member function get_name() on a non-object in /home/dotakeeg/public_html/getHeroes.php on line 67
