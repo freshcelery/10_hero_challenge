@@ -19,7 +19,6 @@ try {
     echo $ex->getMessage();
 }
 
-
 function getData($_in, $db) {
     $stmt = $db->query($_in);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
