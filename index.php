@@ -73,7 +73,12 @@ if (isset($_SESSION['SteamID64'])) {
         <div class="container">
             <a class="brand" href="./index.php"><img src="./img/logo.png" height="50" width="50"></a>
             <ul class="nav">
-                <li><a href="#">Profile</a></li>
+                <?php
+                if (isset($user)) {
+                    echo '<li class="active">Profile</li>';
+                } else {
+                    echo '<li><a href="?login">Profile</a></li>';
+                }?>
                 <li><a href="#">Leaderboard</a></li>
             </ul>
 
