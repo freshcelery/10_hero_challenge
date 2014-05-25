@@ -56,7 +56,31 @@ if (isset($_GET['logout'])) {
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $apikey . "&steamids=" . $SteamID64), true);
+    checkDBforFirstLogIn($user);
 }
+
+//function that checks DB for user for the first time. if no there, creates.
+function checkDBforFirstLogIn($_user){
+    //get db object in the most unsecure way ever
+    $db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
+    try{
+        //save username and id to vars
+        $id = $_user['response']['players'][0]['steamid'];
+        $name = $_user['response']['players'][0]['personaname'];
+
+        //check DB for user
+        $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
+        if($stmt->rowCount() > 0){
+            return;
+        } else {
+            //if no user, insert new entry into DB
+            $db->query("INSERT INTO 'dotakeeg_admin'.'ladder' ('steam_id', 'points', 'name') VALUES ('$id', 0,'$name')");
+        }
+    } catch(PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
 ?>
 <head>
     <!-- Le styles -->
