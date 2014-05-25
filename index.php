@@ -70,7 +70,8 @@ function checkDBforFirstLogIn($_user){
 
         //check DB for user
         $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
-        if($stmt->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (empty($results)){
             return;
         } else {
             //if no user, insert new entry into DB
