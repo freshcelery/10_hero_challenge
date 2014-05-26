@@ -64,18 +64,25 @@ function checkDBforFirstLogIn($_user){
     //get db object in the most unsecure way ever
     $db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
     try{
+
         //save username and id to vars
         $id = $_user['response']['players'][0]['steamid'];
         $name = $_user['response']['players'][0]['personaname'];
 
         //check DB for user
         $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
-        $results = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (empty($results)){
+        //$results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$stmt == null){
             return;
         } else {
             //if no user, insert new entry into DB
-            $db->query("INSERT INTO 'dotakeeg_admin'.'ladder' ('steam_id', 'points', 'name') VALUES ('$id', 0,'$name')");
+            //$db->query("INSERT INTO 'ladder' ('steam_id', 'points', 'name') VALUES ('$id', 0,'$name')");
+            $sql = "INSERT INTO ladder (steam_id,points,name) VALUES (:steam_id,:points,:name)";
+            $q = $db->prepare($sql);
+            $q->execute(array(':steam_id'=>$id,
+                ':points'=>0,
+                ':name'=>$name));
+
         }
     } catch(PDOException $e) {
         echo $e->getMessage();
