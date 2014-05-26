@@ -51,7 +51,6 @@
             </div>
 
             <div class="span12"><h5>history</h5></div>
-<<<<<<< HEAD
             <div class="span12">
                 <table class="table">
                     <tr>
@@ -62,8 +61,8 @@
                     <tr>
                         <td>3</td>
                         <td>
-                            <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
-                            <div class="span1"><img src="img\heroes\Axe.png" class="img-polaroid"></div>
+                            <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                            <div class="span1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Beastmaster.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Io.png" class="img-polaroid"></div>
@@ -114,67 +113,6 @@
                         </td>
                     </tr>
                 </table>
-=======
-            <div class="row">
-                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1">Completed</div>
-            </div>
-            <div class="row">
-                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1">Completed</div>
-            </div>
-            <div class="row">
-                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1">Completed</div>
-            </div>
-            <div class="row">
-                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1">Completed</div>
-            </div>
-            <div class="row">
-                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
-                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
-                <div class="span1">Completed</div>
->>>>>>> 0feabed1e20ac3547a3597ea55f8239bf24a9ebb
             </div>
         </div>
     </div>
