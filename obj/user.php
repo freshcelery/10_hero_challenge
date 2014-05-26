@@ -25,6 +25,7 @@ class user {
     private $heroes = Array();
     private $current_timestamp;
     private $matches_after_timestamp = Array();
+    private $db;
 
 
     /*
@@ -33,16 +34,33 @@ class user {
     *$_steamID - 64 bit steam ID of the user
     *$_steamdID_32 - 32 bit steam ID of the user
     */
-    public function __construct($_steamID, $_steamID_32){
+    public function __construct($_steamID){
+
+    	//get db object in the most unsecure way ever
+		$this->db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
 
         $this->steamID = $_steamID;
-        $this->steamID_32 = $_steamID_32;
+        $this->steamID_32 = $this->convert_id($_steamID);
         $this->get_10_heroes_from_db();
         $this->setup_hero_list();
         $this->get_match_id();
         $this->ten_hero_test();
         $this->update_db_heroes();
     }
+
+    /*
+	*Function used to convert the user's 64 bit ID to a 32 bit ID or vice versa
+	*
+	* $id - the user's 32 or 64 bit id to be changed
+	*/
+	private function convert_id($id){
+    	if (strlen($id) === 17){
+        	$converted = substr($id, 3) - 61197960265728;
+    	}else{
+        	$converted = '765'.($id + 61197960265728);
+    	}
+    	return (string) $converted;
+	}
 
 
     // Returns the 64 bit steam ID of the user
@@ -58,7 +76,7 @@ class user {
 
 
 
-    // Return a array of hero objects
+    // Return a array of hero ids
     public function get_hero_list(){
         return $this->heroes;
     }
@@ -68,16 +86,18 @@ class user {
     *
     */
     public function setup_hero_list(){
+
+    	$heroes_exist_check = "";
+
     	// Grab the uncompleted heroes for this user
         $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $db->prepare($select_heroes);
+        $query = $this->db->prepare($select_heroes);
         if($query->execute(array($this->steamID))){
         	$heroes_exist_check = $query->fetch();
         }
 
         //Check if there are no heroes uncompleted for the user, if so grab a new 10 hero set
         if($heroes_exist_check == NULL){
-	.
     	    if(isset($this->heroes)){
         	    $this->get_new_hero_list();
         	}
@@ -94,7 +114,7 @@ class user {
         $hero_ids = array_rand($this->get_hero_ids(), 10);
 
         //Set current_timestamp to the current time.
-       	$this->get_timestamp();
+       	$this->set_timestamp();
 
         foreach($hero_ids as $id){
         	$current_hero = new hero($id);
@@ -126,14 +146,14 @@ class user {
     private function set_timestamp(){
 
         // Update the database to have the current timestamp
-        $update_sql = "UPDATE hero SET timestamp=(SELECT UNIX_TIMESTAMP()) WHERE steam_id=?";
-        if($q = $db->prepare($update_sql)){
+        $update_sql = "UPDATE hero SET timestamp=UNIX_TIMESTAMP() WHERE steam_id=?";
+        if($q = $this->db->prepare($update_sql)){
         	$q->execute(array($this->steamID));
     	}
 
     	// Grab the current timestamp from the database
         $select_time = "SELECT timestamp FROM hero WHERE steam_id = ?";
-        $query = $db->prepare($select_time);
+        $query = $this->db->prepare($select_time);
         if($query->execute(array($this->steamID))){
         	$this->current_timestamp = $query->fetch();
         }
@@ -330,7 +350,7 @@ class user {
 
     	// Updates the database with the uncompleted heroes of this 10 hero set
         $update_uncompleted = "UPDATE hero SET hero_id_string = NULL WHERE steam_id = ?";
-       	$query = $db->prepare($update_uncompleted);
+       	$query = $this->db->prepare($update_uncompleted);
         $query->execute(array($this->steamID));
     }
 
@@ -343,24 +363,25 @@ class user {
         // Create 2 empty strings for handling the delimited input
     	$completed_heroes = "";
     	$uncompleted_heroes = "";
-
-    	//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
-        foreach($this->heroes as $hero => $completed){
-        	if($completed){
-        		$completed_heroes += $hero.",";
-        	}
-        	else{
-        		$uncompleted_heroes += $hero.",";
+    	if(!empty($this->heroes)){
+    		//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
+        	foreach($this->heroes as $hero => $completed){
+        		if($completed){
+        			$completed_heroes += $hero.",";
+        		}
+        		else{
+        			$uncompleted_heroes += $hero.",";
+        		}
         	}
         }
         // Updates the database with the completed heroes of this 10 hero set
     	$update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ?";
-       	$query = $db->prepare($update_completed);
+       	$query = $this->db->prepare($update_completed);
         $query->execute(array($completed_heroes, $this->steamID));
 
         // Updates the database with the uncompleted heroes of this 10 hero set
         $update_uncompleted = "UPDATE hero SET hero_id_string = ? WHERE steam_id = ?";
-       	$query = $db->prepare($update_uncompleted);
+       	$query = $this->db->prepare($update_uncompleted);
         $query->execute(array($uncompleted_heroes, $this->steamID));
     }
 
@@ -373,19 +394,19 @@ class user {
 
     	// Create empty variables
     	$completed_heroes = "";
-    	$uncompleted_heroes = ""
+    	$uncompleted_heroes = "";
     	$completed_hero_array = Array();
     	$uncompleted_hero_array = Array();
 
     	// Grab the uncompleted heroes for this user
         $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $db->prepare($select_heroes);
+        $query = $this->db->prepare($select_heroes);
         if($query->execute(array($this->steamID))){
         	$uncompleted_heroes = $query->fetch();
         }
         // Grab the completed heroes for this user
         $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $db->prepare($select_heroes);
+        $query = $this->db->prepare($select_heroes);
         if($query->execute(array($this->steamID))){
         	$completed_heroes = $query->fetch();
         }
