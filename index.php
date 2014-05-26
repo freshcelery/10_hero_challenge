@@ -10,6 +10,8 @@ session_start();
 
 include 'obj/openid.php';
 include 'apikey.php';
+include_once 'obj/user.php';
+include_once 'obj/hero.php';
 
 $OpenID = new LightOpenID("dota.keeganbailey.com");
 $db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
@@ -58,6 +60,7 @@ if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $apikey . "&steamids=" . $SteamID64), true);
     checkDBforFirstLogIn($user);
+
 }
 
 //function that checks DB for user for the first time. if no there, creates.
@@ -92,6 +95,20 @@ function checkDBforFirstLogIn($_user){
 
 function heroTableEmpty(){
 
+}
+
+function generate_current_hero_table(){
+    $SteamID64 = $_SESSION['SteamID64'];
+    $user = new user($SteamID64);
+
+    $current_heroes = $user->get_hero_list();
+    echo $user->get_hero_list();
+    if(isset($current_heroes)){
+        foreach($current_heroes as $hero_id){
+            $hero_obj = new hero($hero_id);
+            echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
+        }
+    }
 }
 
 ?>
@@ -166,7 +183,9 @@ function heroTableEmpty(){
                 echo "<div class=\"span1 offset10\"><h4>Points: {$ladder_results['points']}</h4></div>";
                 echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
                 echo '<div class="span12"><hr></div>';
-                echo '<div class="span12"><h5>Your 10 /heroes</h5></div>';
+                echo '<div class="span12"><h5>Your 10 heroes</h5>';
+                generate_current_hero_table();
+                echo'</div>';
 
                 echo "<div class=\"span12\"><h5>History</h5></div>
                 <div class=\"span12\">
