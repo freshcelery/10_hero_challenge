@@ -37,10 +37,11 @@ class user {
 
         $this->steamID = $_steamID;
         $this->steamID_32 = $_steamID_32;
+        $this->get_10_heroes_from_db();
+        $this->setup_hero_list();
         $this->get_match_id();
-        $this->get_new_hero_list();
         $this->ten_hero_test();
-        $this->print_hero_test();
+        $this->update_db_heroes();
     }
 
 
@@ -67,10 +68,19 @@ class user {
     *
     */
     public function setup_hero_list(){
+    	// Grab the uncompleted heroes for this user
+        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
+        $query = $db->prepare($select_heroes);
+        if($query->execute(array($this->steamID))){
+        	$heroes_exist_check = $query->fetch();
+        }
 
-        //TODO: Check DB for heroes list.
-        if(isset($this->heroes)){
-            $this->get_new_hero_list();
+        //Check if there are no heroes uncompleted for the user, if so grab a new 10 hero set
+        if($heroes_exist_check == NULL){
+	.
+    	    if(isset($this->heroes)){
+        	    $this->get_new_hero_list();
+        	}
         }
     }
 
@@ -80,17 +90,16 @@ class user {
     *
     */
     public function get_new_hero_list(){
-
         //get 10 heroes and store hero_id in $this->heroes array
         $hero_ids = array_rand($this->get_hero_ids(), 10);
 
         //Set current_timestamp to the current time.
-        $this->get_timestamp();
+       	$this->get_timestamp();
 
         foreach($hero_ids as $id){
-                $current_hero = new hero($id);
-                $id = $current_hero->get_id();
-                $this->heroes[$id] = 'false';
+        	$current_hero = new hero($id);
+           	$id = $current_hero->get_id();
+           	$this->heroes[$id] = 'false';
         }
     }
 
@@ -297,13 +306,7 @@ class user {
 
         //Unsets $matches_after_timestamp on completion so we don't have to loop through already checked matches 
         unset($this->matches_after_timestamp);
-    }
-
-    // Testing function that prints the heroes array
-    private function print_hero_test(){
-        foreach($this->heroes as $match => $hero){
-            echo $match." => ".$hero."<br />";
-        }
+        $this->check_if_heroes_remain();
     }
 
 
@@ -322,8 +325,83 @@ class user {
     			return;
     		}
     	}
-
     	//If all heres are completed unset the heroes array
     	unset($this->heroes);
+
+    	// Updates the database with the uncompleted heroes of this 10 hero set
+        $update_uncompleted = "UPDATE hero SET hero_id_string = NULL WHERE steam_id = ?";
+       	$query = $db->prepare($update_uncompleted);
+        $query->execute(array($this->steamID));
+    }
+
+    /*
+    * Update the database to contain the current 10 heroes, and whether they have been completed or not
+    *
+    */
+    private function update_db_heroes(){
+        
+        // Create 2 empty strings for handling the delimited input
+    	$completed_heroes = "";
+    	$uncompleted_heroes = "";
+
+    	//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
+        foreach($this->heroes as $hero => $completed){
+        	if($completed){
+        		$completed_heroes += $hero.",";
+        	}
+        	else{
+        		$uncompleted_heroes += $hero.",";
+        	}
+        }
+        // Updates the database with the completed heroes of this 10 hero set
+    	$update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ?";
+       	$query = $db->prepare($update_completed);
+        $query->execute(array($completed_heroes, $this->steamID));
+
+        // Updates the database with the uncompleted heroes of this 10 hero set
+        $update_uncompleted = "UPDATE hero SET hero_id_string = ? WHERE steam_id = ?";
+       	$query = $db->prepare($update_uncompleted);
+        $query->execute(array($uncompleted_heroes, $this->steamID));
+    }
+
+
+    /*
+    * Grab the 10 heroes from the database and populate the heroes Array 
+    *
+    */
+    private function get_10_heroes_from_db(){
+
+    	// Create empty variables
+    	$completed_heroes = "";
+    	$uncompleted_heroes = ""
+    	$completed_hero_array = Array();
+    	$uncompleted_hero_array = Array();
+
+    	// Grab the uncompleted heroes for this user
+        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
+        $query = $db->prepare($select_heroes);
+        if($query->execute(array($this->steamID))){
+        	$uncompleted_heroes = $query->fetch();
+        }
+        // Grab the completed heroes for this user
+        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
+        $query = $db->prepare($select_heroes);
+        if($query->execute(array($this->steamID))){
+        	$completed_heroes = $query->fetch();
+        }
+
+        if(!empty($completed_hero_array) && !empty($uncompleted_hero_array)){
+        	// Explode the strings by comma to get a list of the completed and uncompleted heroes
+        	$completed_hero_array = explode(",",$completed_heroes);
+        	$uncompleted_hero_array = explode(",",$uncompleted_heroes);
+
+        	// Update the heroes array to contain the correct heroes from DB
+        	foreach($completed_hero_array as $hero){
+        		$this->heroes[$hero] = true;
+        	}
+        	foreach($uncompleted_hero_array as $hero){
+        		$this->heroes[$hero] = false;
+        	}
+        }
     }
 }
