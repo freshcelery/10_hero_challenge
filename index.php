@@ -70,7 +70,8 @@ function checkDBforFirstLogIn($_user){
 
         //check DB for user
         $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
-        if($stmt->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (empty($results)){
             return;
         } else {
             //if no user, insert new entry into DB
@@ -85,10 +86,12 @@ function checkDBforFirstLogIn($_user){
 <head>
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <script src="js/bootstrap.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
 <!-- Navbar ================================================== -->
