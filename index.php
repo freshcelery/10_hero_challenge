@@ -109,7 +109,7 @@ function checkDBforFirstLogIn($_user){
             <ul class="nav">
                 <?php
                 if (isset($user)) {
-                    echo '<li class="active">Profile</li>';
+                    echo '<li class="active"><a href="#">Profile</a></li>';
                 } else {
                     echo '<li><a href="?login">Profile</a></li>';
                 }?>
@@ -128,14 +128,34 @@ function checkDBforFirstLogIn($_user){
     <div class="container">
         <?php
         if (isset($user)) {
-            echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
+            /* echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
             echo "</ br>";
             echo "<img src='" . $user['response']['players'][0]['avatarfull'] . "' alt='avatar'/>";
             echo "<form action='profile_test.php' method='get'>
             <input type='hidden' name='steam_id' value='" . $SteamID64 . "'/>
             <input class='submit' type='submit' value='Get 10 Heroes'>
         </form>";
-            echo "<div id='10_heroes'></div>";
+            echo "<div id='10_heroes'></div>"; */
+
+            //get info from ladder for user
+            $ladder_stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
+            $ladder_results = $ladder_stmt->fetch(PDO::FETCH_ASSOC);
+
+            echo "<div class=\"row\">";
+                echo "<div class=\"span1\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
+                echo "<div class=\"span1 offset10\"><h4>Points: {$ladder_results['points']}</h4></div>";
+                echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
+                echo '<div class="span12"><hr></div>';
+                echo '<div class="span12"><h5>Your 10 /heroes</h5></div>';
+
+                echo "<div class=\"span12\"><h5>History</h5></div>
+                <div class=\"span12\">
+                    <table class=\"table\">
+                        <tr>
+                            <th>Set #</th>
+                            <th>Heroes</th>
+                            <th>Completed On</th>
+                        </tr>";
         } else {
             echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
         }
