@@ -12,6 +12,7 @@ include 'obj/openid.php';
 include 'apikey.php';
 
 $OpenID = new LightOpenID("dota.keeganbailey.com");
+$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
 
 if (!$OpenID->mode) {
     if (isset($_GET['login'])) {
