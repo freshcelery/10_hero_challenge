@@ -89,6 +89,10 @@ function checkDBforFirstLogIn($_user){
     }
 }
 
+function heroTableEmpty(){
+
+}
+
 ?>
 <head>
     <!-- Le styles -->
@@ -138,8 +142,24 @@ function checkDBforFirstLogIn($_user){
             echo "<div id='10_heroes'></div>"; */
 
             //get info from ladder for user
-            $ladder_stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
-            $ladder_results = $ladder_stmt->fetch(PDO::FETCH_ASSOC);
+
+
+                $ladder_stmt = $db->prepare("select * from ladder where steam_id = :name");
+                $ladder_stmt->execute(array(':name' => $user['response']['players'][0]['steamid']));
+                $ladder_results = $ladder_stmt->fetchAll();
+
+               /* $ladder_stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
+                $ladder_results = $ladder_stmt->fetch(PDO::FETCH_ASSOC);*/
+
+
+
+            /*
+            $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
+            if(select_stmt == null){
+                $select_results = heroTableEmpty();
+            } else {
+                $select_results = $select_stmt->fetch(PDO::FETCH_ASSOC);
+            } */
 
             echo "<div class=\"row\">";
                 echo "<div class=\"span1\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
