@@ -3,6 +3,8 @@
 include 'obj/user.php';
 include "apikey.php";
 
+$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
+
 /*
 *Function used to convert the user's 64 bit ID to a 32 bit ID or vice versa
 *

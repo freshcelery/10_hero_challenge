@@ -6,6 +6,28 @@
     <script src="js/bootstrap.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 </head>
+
+<?php 
+
+    include_once 'obj/user.php';
+    include_once 'obj/hero.php';
+
+    $steamID = $_GET['steam_id'];
+
+    $current_user = new user($steamID);
+
+    $hero_objects_array = Array();
+    $current_hero_array = Array();
+
+    $current_hero_array = $current_user->get_hero_list();
+    echo $current_hero_array;
+    foreach($current_hero_array as $hero_id){
+        $hero = new hero($hero_id);
+        array_push($hero_objects_array, $hero);
+    }
+
+
+?>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:60px;">
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,25 +55,21 @@
             <div class="span5"><img src="img/140x140.gif" class="img-polaroid"></div>
             <div class="span12"><hr></div>
             <div class="span12"><h5>current_heroes</h5></div>
-
-            <div class="row">
-                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-            </div>
-
-            <div class="row">
-                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-            </div>
-
+            <?php
+            echo"<div class='row'>";
+                for($i=0; $i<5; $i++){
+                    $hero = $hero_objects_array[$i];
+                    echo"<div class='span2 offset1'><img src='".$hero->get_image()."' class='img-polaroid'></div>";
+                }
+            echo"</div>";
+            echo"<div class='row'>";
+                for($i=5; $i<10; $i++){
+                    $hero = $hero_objects_array[$i];
+                    echo"<div class='span2 offset1'><img src='".$hero->get_image()."' class='img-polaroid'></div>";
+                }
+            echo"</div>";
+            ?>
             <div class="span12"><h5>history</h5></div>
-<<<<<<< HEAD
             <div class="span12">
                 <table class="table">
                     <tr>
@@ -114,7 +132,6 @@
                         </td>
                     </tr>
                 </table>
-=======
             <div class="row">
                 <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
                 <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
@@ -174,7 +191,6 @@
                 <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
                 <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
                 <div class="span1">Completed</div>
->>>>>>> 0feabed1e20ac3547a3597ea55f8239bf24a9ebb
             </div>
         </div>
     </div>

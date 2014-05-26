@@ -131,7 +131,7 @@ function checkDBforFirstLogIn($_user){
             echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
             echo "</ br>";
             echo "<img src='" . $user['response']['players'][0]['avatarfull'] . "' alt='avatar'/>";
-            echo "<form action='getHeroes.php' method='get'>
+            echo "<form action='profile_test.php' method='get'>
             <input type='hidden' name='steam_id' value='" . $SteamID64 . "'/>
             <input class='submit' type='submit' value='Get 10 Heroes'>
         </form>";
