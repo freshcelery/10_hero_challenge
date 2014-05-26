@@ -30,27 +30,28 @@
         <div class="row">
             <div class="span1"><h3>Personal_Name</h3></div>
             <div class="span1 offset10"><h4>Points: ########</h4></div>
-            <div class="span5"><img src="img\140x140.gif" class="img-polaroid"></div>
+            <div class="span5"><img src="img/140x140.gif" class="img-polaroid"></div>
             <div class="span12"><hr></div>
             <div class="span12"><h5>current_heroes</h5></div>
 
             <div class="row">
-                <div class="span2 offset1"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
+                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
             </div>
 
             <div class="row">
-                <div class="span2 offset1"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img\heroes\Abaddon.png" class="img-polaroid"></div>
+                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
             </div>
 
             <div class="span12"><h5>history</h5></div>
+<<<<<<< HEAD
             <div class="span12">
                 <table class="table">
                     <tr>
@@ -113,6 +114,67 @@
                         </td>
                     </tr>
                 </table>
+=======
+            <div class="row">
+                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1">Completed</div>
+            </div>
+            <div class="row">
+                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1">Completed</div>
+            </div>
+            <div class="row">
+                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1">Completed</div>
+            </div>
+            <div class="row">
+                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1">Completed</div>
+            </div>
+            <div class="row">
+                <div class="span1 offset1"><img src="img/heroes/Axe.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Beastmaster.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Doom.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Io.png" class="img-polaroid"></div>
+                <div class="span1"><img src="img/heroes/Enigma.png" class="img-polaroid"></div>
+                <div class="span1">Completed</div>
+>>>>>>> 0feabed1e20ac3547a3597ea55f8239bf24a9ebb
             </div>
         </div>
     </div>

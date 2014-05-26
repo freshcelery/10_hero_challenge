@@ -88,8 +88,10 @@ function checkDBforFirstLogIn($_user){
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
     <script src="js/bootstrap.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
 <!-- Navbar ================================================== -->
