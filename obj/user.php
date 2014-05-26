@@ -112,17 +112,23 @@ class user {
 
 
     /*
-    * Get current Unix timestamp 
+    * Set current Unix timestamp on the Database and updates the current_timestamp variable to be the same
     */
     private function set_timestamp(){
 
-        $date = new DateTime();
-        $this->current_timestamp = $date->getTimestamp();
-
         // Update the database to have the current timestamp
-        $sql = "UPDATE user SET timestamp=? WHERE steam_id=?";
-        $q = $db->prepare($sql);
-        $q->execute(array($this->current_timestamp,$this->steamID));
+        $update_sql = "UPDATE hero SET timestamp=(SELECT UNIX_TIMESTAMP()) WHERE steam_id=?";
+        if($q = $db->prepare($update_sql)){
+        	$q->execute(array($this->steamID));
+    	}
+
+    	// Grab the current timestamp from the database
+        $select_time = "SELECT timestamp FROM hero WHERE steam_id = ?";
+        $query = $db->prepare($select_time);
+        if($query->execute(array($this->steamID))){
+        	$this->current_timestamp = $query->fetch();
+        }
+
     }
 
 
