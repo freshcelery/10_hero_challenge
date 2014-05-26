@@ -144,15 +144,14 @@ function heroTableEmpty(){
 
             //get info from ladder for user
 
-/*
                 $ladder_stmt = $db->prepare("select * from ladder where steam_id = :name");
                 $ladder_stmt->execute(array(':name' => $user['response']['players'][0]['steamid']));
                 $ladder_results = $ladder_stmt->fetchAll();
-*/
+/*
                 $ladder_stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
                 $ladder_results = $ladder_stmt->fetch(PDO::FETCH_ASSOC);
 
-
+*/
 
             /*
             $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
