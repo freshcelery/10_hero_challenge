@@ -109,7 +109,7 @@ function checkDBforFirstLogIn($_user){
             <ul class="nav">
                 <?php
                 if (isset($user)) {
-                    echo '<li class="active">Profile</li>';
+                    echo '<li class="active"><a href="#">Profile</a></li>';
                 } else {
                     echo '<li><a href="?login">Profile</a></li>';
                 }?>
