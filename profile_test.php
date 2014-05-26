@@ -61,6 +61,7 @@
                     <tr>
                         <td>3</td>
                         <td>
+                            <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Axe.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Beastmaster.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
@@ -78,6 +79,7 @@
                     <tr>
                         <td>2</td>
                         <td>
+                            <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Axe.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Beastmaster.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
@@ -99,6 +101,7 @@
                             <div class="span1"><img src="img\heroes\Beastmaster.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Io.png" class="img-polaroid"></div>
+                            <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Enigma.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Beastmaster.png" class="img-polaroid"></div>
                             <div class="span1"><img src="img\heroes\Doom.png" class="img-polaroid"></div>
