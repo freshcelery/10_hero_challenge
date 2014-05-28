@@ -119,16 +119,28 @@ function generate_current_hero_table(){
 
 ?>
 <head>
-    <!-- Le styles -->
+    <!-- styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/10_hero_challenge.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-
-    <script src="js/bootstrap.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $(function(){
+            $('.container').addClass('opaque');
+            $( document ).ready(function(){
+                $('.container').removeClass('opaque');
+                $(".loading").hide();
+            })// end ready
 
+        }); //end document.ready();
+    </script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
+<div class="loading">
+</div>
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
