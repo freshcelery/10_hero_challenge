@@ -124,12 +124,6 @@ function generate_current_hero_table(){
     <link href="css/10_hero_challenge.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<<<<<<< HEAD
-
-    <script src="js/bootstrap.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-=======
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -139,7 +133,6 @@ function generate_current_hero_table(){
             $('.jumbotron').fadeIn('slow');
         })// end load
     </script>
->>>>>>> 5e80433ca92cc1a3e761f288fe43ed22010007aa
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
 <div class="loading">
