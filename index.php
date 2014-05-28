@@ -128,14 +128,10 @@ function generate_current_hero_table(){
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script>
-        $(function(){
-            $('.container').addClass('opaque');
-            $( document ).ready(function(){
-                $('.container').removeClass('opaque');
-                $(".loading").hide();
-            })// end ready
-
-        }); //end document.ready();
+        $(window).load(function(){
+            $('.loading').fadeOut('slow');
+            $('.jumbotron').fadeIn('slow');
+        })// end load
     </script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
@@ -164,14 +160,15 @@ function generate_current_hero_table(){
 </div>
 <!-- End Navbar ============================================== -->
 <hr>
-<div class="jumbotron masthead">
+<div class="jumbotron masthead" style="display: none;">
     <div class="container">
         <?php
         if (isset($user)) {
             //get info from ladder for user
-                $ladder_stmt = $db->prepare("select * from ladder where steam_id = :name");
-                $ladder_stmt->execute(array(':name' => $user['response']['players'][0]['steamid']));
-                $ladder_results = $ladder_stmt->fetchAll();
+                $ladder_stmt = $mysqli->prepare("select * from ladder where steam_id = ?");
+                $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
+                $ladder_stmt->execute();
+                $ladder_results = $ladder_stmt->fetch();
             /*
             $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
             if(select_stmt == null){

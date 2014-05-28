@@ -12,8 +12,3 @@
 .opaque{
 	opacity: 0.2;
 }
-
-.loading td {
-   vertical-align: middle;
-   text-align: center;
-}
