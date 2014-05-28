@@ -119,16 +119,31 @@ function generate_current_hero_table(){
 
 ?>
 <head>
-    <!-- Le styles -->
+    <!-- styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/10_hero_challenge.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<<<<<<< HEAD
 
     <script src="js/bootstrap.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+=======
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $(window).load(function(){
+            $('.loading').fadeOut('slow');
+            $('.jumbotron').fadeIn('slow');
+        })// end load
+    </script>
+>>>>>>> 5e80433ca92cc1a3e761f288fe43ed22010007aa
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
+<div class="loading">
+</div>
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -152,14 +167,15 @@ function generate_current_hero_table(){
 </div>
 <!-- End Navbar ============================================== -->
 <hr>
-<div class="jumbotron masthead">
+<div class="jumbotron masthead" style="display: none;">
     <div class="container">
         <?php
         if (isset($user)) {
             //get info from ladder for user
-                $ladder_stmt = $db->prepare("select * from ladder where steam_id = :name");
-                $ladder_stmt->execute(array(':name' => $user['response']['players'][0]['steamid']));
-                $ladder_results = $ladder_stmt->fetchAll();
+                $ladder_stmt = $mysqli->prepare("select * from ladder where steam_id = ?");
+                $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
+                $ladder_stmt->execute();
+                $ladder_results = $ladder_stmt->fetch();
             /*
             $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
             if(select_stmt == null){

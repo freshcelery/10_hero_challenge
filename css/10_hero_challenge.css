@@ -1,0 +1,14 @@
+.loading{
+   height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	z-index: 1000;
+	position: fixed;
+	background:url("../img/ajax-loader.gif") center center no-repeat;
+}
+
+.opaque{
+	opacity: 0.2;
+}

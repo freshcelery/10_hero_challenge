@@ -367,10 +367,10 @@ class user {
     		//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
         	foreach($this->heroes as $hero => $completed){
         		if($completed){
-        			$completed_heroes += $hero.",";
+        			$completed_heroes .= $hero.",";
         		}
         		else{
-        			$uncompleted_heroes += $hero.",";
+        			$uncompleted_heroes .= $hero.",";
         		}
         	}
         }

@@ -2986,7 +2986,7 @@ button.close {
 
 .btn:active,
 .btn.active {
-  background-color: #cccccc \9;
+  background-color: #cccccc;
 }
 
 .btn:first-child {
