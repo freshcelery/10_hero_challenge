@@ -59,16 +59,13 @@ if (isset($_GET['logout'])) {
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $apikey . "&steamids=" . $SteamID64), true);
-    checkDBforFirstLogIn($user);
+    checkDBforFirstLogIn($user, $db);
 
 }
 
 //function that checks DB for user for the first time. if no there, creates.
-function checkDBforFirstLogIn($_user){
-    //get db object in the most unsecure way ever
-    $db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
+function checkDBforFirstLogIn($_user, PDO $db){
     try{
-
         //save username and id to vars
         $id = $_user['response']['players'][0]['steamid'];
         $name = $_user['response']['players'][0]['personaname'];
@@ -76,17 +73,13 @@ function checkDBforFirstLogIn($_user){
         //check DB for user
         $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
         //$results = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$stmt == null){
-            return;
-        } else {
+        if ($stmt == null){
             //if no user, insert new entry into DB
-            //$db->query("INSERT INTO 'ladder' ('steam_id', 'points', 'name') VALUES ('$id', 0,'$name')");
             $sql = "INSERT INTO ladder (steam_id,points,name) VALUES (:steam_id,:points,:name)";
             $q = $db->prepare($sql);
             $q->execute(array(':steam_id'=>$id,
                 ':points'=>0,
                 ':name'=>$name));
-
         }
     } catch(PDOException $e) {
         echo $e->getMessage();
@@ -150,26 +143,10 @@ function generate_current_hero_table(){
     <div class="container">
         <?php
         if (isset($user)) {
-            /* echo "<h1> {$user['response']['players'][0]['personaname']} </h1>";
-            echo "</ br>";
-            echo "<img src='" . $user['response']['players'][0]['avatarfull'] . "' alt='avatar'/>";
-            echo "<form action='getHeroes.php' method='get'>
-            <input type='hidden' name='steam_id' value='" . $SteamID64 . "'/>
-            <input class='submit' type='submit' value='Get 10 Heroes'>
-        </form>";
-            echo "<div id='10_heroes'></div>"; */
-
             //get info from ladder for user
-
                 $ladder_stmt = $db->prepare("select * from ladder where steam_id = :name");
                 $ladder_stmt->execute(array(':name' => $user['response']['players'][0]['steamid']));
                 $ladder_results = $ladder_stmt->fetchAll();
-/*
-                $ladder_stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
-                $ladder_results = $ladder_stmt->fetch(PDO::FETCH_ASSOC);
-
-*/
-
             /*
             $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
             if(select_stmt == null){
