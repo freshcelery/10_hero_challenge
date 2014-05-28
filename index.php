@@ -14,7 +14,8 @@ include_once 'obj/user.php';
 include_once 'obj/hero.php';
 
 $OpenID = new LightOpenID("dota.keeganbailey.com");
-$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
+$mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+//$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
 
 if (!$OpenID->mode) {
     if (isset($_GET['login'])) {
@@ -58,21 +59,28 @@ if (isset($_GET['logout'])) {
 
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
-    $user = json_decode(file_get_contents("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" . $apikey . "&steamids=" . $SteamID64), true);
-    checkDBforFirstLogIn($user, $db);
+    $user = json_decode(file_get_contents("cache/$SteamID64.json"), true);
+    checkDBforFirstLogIn($user, $mysqli);
 
 }
 
 //function that checks DB for user for the first time. if no there, creates.
-function checkDBforFirstLogIn($_user, PDO $db){
+function checkDBforFirstLogIn($_user, mysqli $mysqli){
     try{
         //save username and id to vars
-        $id = $_user['response']['players'][0]['steamid'];
+        $id = substr($_user['response']['players'][0]['steamid'], 3) - 61197960265728;
+        $points = 0;
         $name = $_user['response']['players'][0]['personaname'];
 
         //check DB for user
-        $stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
-        //$results = $stmt->fetch(PDO::FETCH_ASSOC);
+        //$stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
+        $result = $mysqli->query("SELECT * FROM ladder WHERE steam_id = $id");
+
+        if (!$result) {
+            die($mysqli->error);
+        }
+
+        /*$results = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt == null){
             //if no user, insert new entry into DB
             $sql = "INSERT INTO ladder (steam_id,points,name) VALUES (:steam_id,:points,:name)";
@@ -80,8 +88,13 @@ function checkDBforFirstLogIn($_user, PDO $db){
             $q->execute(array(':steam_id'=>$id,
                 ':points'=>0,
                 ':name'=>$name));
+        }*/
+
+        if (! $result->num_rows > 0) {
+            $result = $mysqli->query("INSERT IGNORE INTO ladder (steam_id,points,name) VALUES ('$id', '$points', '$name')");
         }
-    } catch(PDOException $e) {
+
+    } catch(mysqli_sql_exception $e) {
         echo $e->getMessage();
     }
 }
