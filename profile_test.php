@@ -35,19 +35,19 @@
             <div class="span12"><h5>current_heroes</h5></div>
 
             <div class="row">
-                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#0aac11;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
             </div>
 
             <div class="row">
-                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
-                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid"></div>
+                <div class="span2 offset1"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#0aac11;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#0aac11;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#ac2925;"></div>
+                <div class="span2"><img src="img/heroes/Abaddon.png" class="img-polaroid" style="background-color:#0aac11;"></div>
             </div>
 
             <div class="span12"><h5>history</h5></div>
