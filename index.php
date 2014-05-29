@@ -56,12 +56,12 @@ if (isset($_GET['logout'])) {
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("cache/$SteamID64.json"), true);
-    checkDBforFirstLogIn($user, $mysqli);
+    check_db_for_first_login($user, $mysqli);
 
 }
 
 //function that checks DB for user for the first time. if no there, creates.
-function checkDBforFirstLogIn($_user, mysqli $mysqli){
+function check_db_for_first_login($_user, mysqli $mysqli){
     try{
         //save username and id to vars
         $id = substr($_user['response']['players'][0]['steamid'], 3) - 61197960265728;
