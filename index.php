@@ -108,9 +108,8 @@ function generate_current_hero_table(){
     $user = new user($SteamID64);
 
     $current_heroes = $user->get_hero_list();
-    echo $user->get_hero_list();
     if(isset($current_heroes)){
-        foreach($current_heroes as $hero_id){
+        foreach($current_heroes as $hero_id => $completed){
             $hero_obj = new hero($hero_id);
             echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
         }

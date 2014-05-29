@@ -25,7 +25,7 @@ class user {
     private $heroes = Array();
     private $current_timestamp;
     private $matches_after_timestamp = Array();
-    private $db;
+    private $seq_num;
 
 
     /*
@@ -36,16 +36,12 @@ class user {
     */
     public function __construct($_steamID){
 
-    	//get db object in the most unsecure way ever
-		$this->db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
-
         $this->steamID = $_steamID;
         $this->steamID_32 = $this->convert_id($_steamID);
+        $this->insert_new_user();
         $this->get_10_heroes_from_db();
-        $this->setup_hero_list();
         $this->get_match_id();
         $this->ten_hero_test();
-        $this->update_db_heroes();
     }
 
     /*
@@ -86,21 +82,12 @@ class user {
     *
     */
     public function setup_hero_list(){
-
-    	$heroes_exist_check = "";
-
-    	// Grab the uncompleted heroes for this user
-        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $this->db->prepare($select_heroes);
-        if($query->execute(array($this->steamID))){
-        	$heroes_exist_check = $query->fetch();
-        }
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
         //Check if there are no heroes uncompleted for the user, if so grab a new 10 hero set
-        if($heroes_exist_check == NULL){
-    	    if(isset($this->heroes)){
-        	    $this->get_new_hero_list();
-        	}
+        
+        if(count($this->heroes) == 0){
+        	$this->get_new_hero_list();
         }
     }
 
@@ -121,6 +108,8 @@ class user {
            	$id = $current_hero->get_id();
            	$this->heroes[$id] = 'false';
         }
+
+        $this->update_db_heroes();
     }
 
 
@@ -144,18 +133,24 @@ class user {
     * Set current Unix timestamp on the Database and updates the current_timestamp variable to be the same
     */
     private function set_timestamp(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
         // Update the database to have the current timestamp
-        $update_sql = "UPDATE hero SET timestamp=UNIX_TIMESTAMP() WHERE steam_id=?";
-        if($q = $this->db->prepare($update_sql)){
-        	$q->execute(array($this->steamID));
-    	}
+        $update_sql = "UPDATE hero SET create_timestamp=(SELECT UNIX_TIMESTAMP(NOW())) WHERE steam_id= ?";
+        if($q = $mysqli->prepare($update_sql)){   
+            $q->bind_param("s", $this->steamID_32);
+            $q->execute();
+            $q->close();
+        }
 
     	// Grab the current timestamp from the database
-        $select_time = "SELECT timestamp FROM hero WHERE steam_id = ?";
-        $query = $this->db->prepare($select_time);
-        if($query->execute(array($this->steamID))){
-        	$this->current_timestamp = $query->fetch();
+        $select_time = "SELECT create_timestamp FROM hero WHERE steam_id = ?";
+        if($query = $mysqli->prepare($select_time)){
+            $query->bind_param("s",$this->steamID_32);
+            $query->execute();
+            $query->bind_result($this->current_timestamp);
+            $query->fetch();
+            $query->close();
         }
 
     }
@@ -335,6 +330,8 @@ class user {
     *
     */
     private function check_if_heroes_remain(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
     	foreach($this->heroes as $hero_id => $completed){
     		//If the hero is completed, continue iteration
     		if($completed){
@@ -348,10 +345,13 @@ class user {
     	//If all heres are completed unset the heroes array
     	unset($this->heroes);
 
-    	// Updates the database with the uncompleted heroes of this 10 hero set
-        $update_uncompleted = "UPDATE hero SET hero_id_string = NULL WHERE steam_id = ?";
-       	$query = $this->db->prepare($update_uncompleted);
-        $query->execute(array($this->steamID));
+    	// Updates the database with the completed heroes of this 10 hero set
+        $update_uncompleted = "UPDATE hero SET complete_id_string = NULL WHERE steam_id = ?";
+       	if($query = $mysqli->prepare($update_uncompleted)){
+            $query->bind_param("s",$this->steamID_32);
+            $query->execute();
+            $query->close();
+        }
     }
 
     /*
@@ -359,14 +359,15 @@ class user {
     *
     */
     private function update_db_heroes(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
         
         // Create 2 empty strings for handling the delimited input
-    	$completed_heroes = "";
-    	$uncompleted_heroes = "";
-    	if(!empty($this->heroes)){
+    	$completed_heroes;
+    	$uncompleted_heroes;
+    	if(count($this->heroes) > 0){
     		//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
         	foreach($this->heroes as $hero => $completed){
-        		if($completed){
+        		if($completed == 'true'){
         			$completed_heroes .= $hero.",";
         		}
         		else{
@@ -376,13 +377,19 @@ class user {
         }
         // Updates the database with the completed heroes of this 10 hero set
     	$update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ?";
-       	$query = $this->db->prepare($update_completed);
-        $query->execute(array($completed_heroes, $this->steamID));
+       	if($query = $mysqli->prepare($update_completed)){
+            $query->bind_param("ss",$completed_heroes, $this->steamID_32);
+            $query->execute();
+            $query->close();
+        }
 
         // Updates the database with the uncompleted heroes of this 10 hero set
         $update_uncompleted = "UPDATE hero SET hero_id_string = ? WHERE steam_id = ?";
-       	$query = $this->db->prepare($update_uncompleted);
-        $query->execute(array($uncompleted_heroes, $this->steamID));
+       	if($query = $mysqli->prepare($update_uncompleted)){
+            $query->bind_param("ss",$uncompleted_heroes, $this->steamID_32);
+            $query->execute();
+            $query->close();
+        }
     }
 
 
@@ -391,38 +398,78 @@ class user {
     *
     */
     private function get_10_heroes_from_db(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
     	// Create empty variables
-    	$completed_heroes = "";
-    	$uncompleted_heroes = "";
+    	$completed_heroes;
+    	$uncompleted_heroes;
     	$completed_hero_array = Array();
     	$uncompleted_hero_array = Array();
 
     	// Grab the uncompleted heroes for this user
-        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $this->db->prepare($select_heroes);
-        if($query->execute(array($this->steamID))){
-        	$uncompleted_heroes = $query->fetch();
-        }
-        // Grab the completed heroes for this user
-        $select_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
-        $query = $this->db->prepare($select_heroes);
-        if($query->execute(array($this->steamID))){
-        	$completed_heroes = $query->fetch();
+        $select_uncomplete_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
+        if($uncomplete_query = $mysqli->prepare($select_uncomplete_heroes)){
+            $uncomplete_query->bind_param("s",$this->steamID_32);
+            $uncomplete_query->execute();
+            $uncomplete_query->bind_result($uncompleted_heroes);
+            $uncomplete_query->fetch();
+            $uncomplete_query->close();
         }
 
-        if(!empty($completed_hero_array) && !empty($uncompleted_hero_array)){
+        // Grab the completed heroes for this user
+        $select_completed_heroes = "SELECT complete_id_string FROM hero WHERE steam_id = ?";
+        if($complete_query = $mysqli->prepare($select_completed_heroes)){
+            $complete_query->bind_param("s",$this->steamID_32);
+            $complete_query->execute();
+            $complete_query->bind_result($completed_heroes);
+            $complete_query->fetch();
+            $complete_query->close();
+        }
+        if(isset($uncompleted_heroes)){
         	// Explode the strings by comma to get a list of the completed and uncompleted heroes
-        	$completed_hero_array = explode(",",$completed_heroes);
-        	$uncompleted_hero_array = explode(",",$uncompleted_heroes);
+            if(isset($completed_heroes)){
+        	   $completed_hero_array = explode(",",$completed_heroes,10);
+            }
+        	$uncompleted_hero_array = explode(",",$uncompleted_heroes,10);
 
         	// Update the heroes array to contain the correct heroes from DB
-        	foreach($completed_hero_array as $hero){
-        		$this->heroes[$hero] = true;
-        	}
-        	foreach($uncompleted_hero_array as $hero){
-        		$this->heroes[$hero] = false;
-        	}
+            if(count($completed_hero_array) != 0){
+        	   foreach($completed_hero_array as $hero){
+        		  $this->heroes[$hero] = true;
+        	   }
+            }
+            if(count($uncompleted_hero_array) != 0){
+        	   foreach($uncompleted_hero_array as $hero){
+        		  $this->heroes[$hero] = false;
+        	   }
+            }
+        }
+        else{
+            $this->setup_hero_list();
+        }
+    }
+
+
+    private function insert_new_user(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+        $result;
+        $select_from_db = "SELECT steam_id FROM hero WHERE steam_id = ?";
+        if($select_query = $mysqli->prepare($select_from_db)){
+            $select_query->bind_param("s", $this->steamID_32);
+            $select_query->execute();
+            $select_query->bind_result($result);
+            $select_query->fetch();
+            $select_query->close();
+        }
+
+        if($result == 0){
+            $seq_num = 1;
+            $statement = "INSERT INTO hero (steam_id, seq_id) VALUES (?, ?)";
+            if($query = $mysqli->prepare($statement)){
+                $query->bind_param("si", $this->steamID_32, $seq_num);
+                $query->execute();
+                $query->close();
+            }
         }
     }
 }
