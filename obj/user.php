@@ -459,11 +459,11 @@ class user {
             }
             else{
 
-                $seq_num = 1;
+                $this->seq_num++;
                 if(isset($this->steamID_32)){
                     $statement = "INSERT IGNORE INTO hero (steam_id, seq_id) VALUES (?, ?)";
                     if($query = $mysqli->prepare($statement)){
-                        $query->bind_param("si", $this->steamID_32, $seq_num);
+                        $query->bind_param("si", $this->steamID_32, $this->seq_num);
                         $query->execute();
                         $query->close();               
                     }

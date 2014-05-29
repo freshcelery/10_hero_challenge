@@ -13,7 +13,7 @@ include 'apikey.php';
 include_once 'obj/user.php';
 include_once 'obj/hero.php';
 
-$current_user;
+$user;
 $OpenID = new LightOpenID("dota.keeganbailey.com");
 $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
@@ -57,7 +57,7 @@ if (isset($_GET['logout'])) {
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("cache/$SteamID64.json"), true);
-    check_db_for_first_login($user, $mysqli);
+    //check_db_for_first_login($user, $mysqli);
 
 }
 
@@ -120,23 +120,23 @@ function generate_history_table(mysqli $mysqli){
 
 }
 
-function generate_current_hero_table($user){
-    $SteamID_ = $_SESSION['SteamID64'];
+function generate_current_hero_table(){
+    if(($_SESSION['SteamID64'] > '2147483647')){
+        $SteamID_ = $_SESSION['SteamID64'];
+    
 
-    echo $SteamID_;
-    if(!isset($user)){
-        $user = new user($SteamID_);
-    }
+        $current_user = new user($SteamID_);
 
-    $current_heroes = $user->get_hero_list();
-    if(isset($current_heroes)){
-        foreach($current_heroes as $hero_id => $completed){
-            $hero_obj = new hero($hero_id);
-            if($completed == 'true'){
-                echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid completed'></div>";
-            }
-            else{
-                echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
+        $current_heroes = $current_user->get_hero_list();
+        if(isset($current_heroes)){
+            foreach($current_heroes as $hero_id => $completed){
+                $hero_obj = new hero($hero_id);
+                if($completed == 'true'){
+                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid completed'></div>";
+                }
+                else{
+                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
+                }
             }
         }
     }
@@ -209,7 +209,7 @@ function generate_current_hero_table($user){
                 echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
                 echo '<div class="span12"><hr></div>';
                 echo '<div class="span12"><h5>Your 10 heroes</h5>';
-                generate_current_hero_table($current_user);
+                generate_current_hero_table();
                 echo'</div>';
 
                 echo "<div class=\"span12\"><h5>History</h5></div>
