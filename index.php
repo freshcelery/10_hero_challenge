@@ -83,9 +83,39 @@ function check_db_for_first_login($_user, mysqli $mysqli){
     }
 }
 
-function generate_history_table(){
-    $SteamID64 = $_SESSION['SteamID64'];
+function generate_history_table(mysqli $mysqli){
+    $id = substr($_SESSION['SteamID64'], 3) - 61197960265728;
 
+    $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id");
+
+    if (!$result) {
+        die($mysqli->error);
+    }
+
+    $list = Array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $seq_id = $row['seq_id'];
+        $hero_id_string = $row['hero_id_string'];
+        $is_done = $row['is_done'];
+
+        //TODO: make or use a function to get all the images
+        $hero_id_string = get_hero_image_list($hero_id_string);
+
+        //This can be changed if we add a completed timestamp in, then I can have
+        //time completed and in progress
+        if($is_done){
+            $is_done = "Completed";
+        } else {
+            $is_done = "In Progress";
+        }
+        $list[] = "<tr>
+                     <td>{$seq_id}</td>
+                     <td>{$hero_id_string}</td>
+                     <td>{$is_done}</td>
+                   </tr>";
+    }
+
+    return $list;
 
 }
 
