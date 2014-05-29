@@ -86,7 +86,7 @@ function check_db_for_first_login($_user, mysqli $mysqli){
 function generate_history_table(mysqli $mysqli){
     $id = substr($_SESSION['SteamID64'], 3) - 61197960265728;
 
-    $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id");
+    $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
 
     if (!$result) {
         die($mysqli->error);
