@@ -50,13 +50,14 @@ class user {
 	* $id - the user's 32 or 64 bit id to be changed
 	*/
 	private function convert_id($id){
-    	if (strlen($id) === 17){
-        	$converted = substr($id, 3) - 61197960265728;
-    	}else{
-        	$converted = '765'.($id + 61197960265728);
-    	}
-    	return (string) $converted;
-	}
+        if (strlen($id) === 17){
+            $converted = substr($id, 3) - 61197960265728;
+        }
+        else{
+            $converted = '765'.($id + 61197960265728);
+        }
+    return (string) $converted;
+}
 
 
     // Returns the 64 bit steam ID of the user
@@ -101,8 +102,6 @@ class user {
        	$this->set_timestamp();
 
         foreach($hero_ids as $id){
-        	$current_hero = new hero($id);
-           	$id = $current_hero->get_id();
            	$this->heroes[$id] = 'false';
         }
 
@@ -187,20 +186,22 @@ class user {
 
         $json_decoded_player = (json_decode($json_player, true));
         $hero = 0;
-        foreach($json_decoded_player['result']['matches'] as $matches){
-            $int_timestamp = intval($matches['timestamp']);
-            if($int_timestamp > $this->current_timestamp){
-                foreach($matches['players'] as $players){
-                    if($players['account_id'] == $this->steamID_32){
-                        $hero = $players['hero_id'];
+        if($json_decoded_player['result']['matches']){
+            foreach($json_decoded_player['result']['matches'] as $matches){
+                $int_timestamp = intval($matches['timestamp']);
+                if($int_timestamp > $this->current_timestamp){
+                    foreach($matches['players'] as $players){
+                        if($players['account_id'] == $this->steamID_32){
+                            $hero = $players['hero_id'];
+                        }
+                        else{
+                            continue;
+                        }
                     }
-                    else{
-                        continue;
-                    }
+                    $match_id = $matches['match_id'];
+                    $this->matches_after_timestamp[$match_id] = $hero;
+                    $this->set_timestamp();
                 }
-                $match_id = $matches['match_id'];
-                $this->matches_after_timestamp[$match_id] = $hero;
-                $this->set_timestamp();
             }
         }
     }
@@ -443,31 +444,31 @@ class user {
         	   }
             }
         }
-        else{
-            $this->setup_hero_list();
-        }
     }
 
 
     private function insert_new_user(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-        $result;
+
         $select_from_db = "SELECT steam_id FROM hero WHERE steam_id = ?";
         if($select_query = $mysqli->prepare($select_from_db)){
             $select_query->bind_param("s", $this->steamID_32);
             $select_query->execute();
-            $select_query->bind_result($result);
-            $select_query->fetch();
-            $select_query->close();
-        }
+            if($select_query->fetch()){
+                $select_query->close();
+            }
+            else{
 
-        if($result == 0){
-            $seq_num = 1;
-            $statement = "INSERT INTO hero (steam_id, seq_id) VALUES (?, ?)";
-            if($query = $mysqli->prepare($statement)){
-                $query->bind_param("si", $this->steamID_32, $seq_num);
-                $query->execute();
-                $query->close();
+                $seq_num = 1;
+                if(isset($this->steamID_32)){
+                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id) VALUES (?, ?)";
+                    if($query = $mysqli->prepare($statement)){
+                        $query->bind_param("si", $this->steamID_32, $seq_num);
+                        $query->execute();
+                        $query->close();               
+                    }
+                }
+                $this->setup_hero_list(); 
             }
         }
     }

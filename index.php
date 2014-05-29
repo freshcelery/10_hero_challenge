@@ -13,6 +13,7 @@ include 'apikey.php';
 include_once 'obj/user.php';
 include_once 'obj/hero.php';
 
+$current_user;
 $OpenID = new LightOpenID("dota.keeganbailey.com");
 $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
@@ -50,7 +51,7 @@ if (isset($_SESSION['SteamAuth'])) {
 if (isset($_GET['logout'])) {
     unset($_SESSION['SteamAuth']);
     unset($_SESSION['SteamID64']);
-    header("Location: openidtest.php");
+    header("Location: index.php");
 }
 
 if (isset($_SESSION['SteamID64'])) {
@@ -119,9 +120,13 @@ function generate_history_table(mysqli $mysqli){
 
 }
 
-function generate_current_hero_table(){
-    $SteamID64 = $_SESSION['SteamID64'];
-    $user = new user($SteamID64);
+function generate_current_hero_table($user){
+    $SteamID_ = $_SESSION['SteamID64'];
+
+    echo $SteamID_;
+    if(!isset($user)){
+        $user = new user($SteamID_);
+    }
 
     $current_heroes = $user->get_hero_list();
     if(isset($current_heroes)){
@@ -136,6 +141,7 @@ function generate_current_hero_table(){
         }
     }
 }
+
 
 ?>
 <head>
@@ -203,7 +209,7 @@ function generate_current_hero_table(){
                 echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
                 echo '<div class="span12"><hr></div>';
                 echo '<div class="span12"><h5>Your 10 heroes</h5>';
-                generate_current_hero_table();
+                generate_current_hero_table($current_user);
                 echo'</div>';
 
                 echo "<div class=\"span12\"><h5>History</h5></div>
