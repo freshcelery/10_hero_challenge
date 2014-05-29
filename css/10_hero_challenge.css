@@ -12,3 +12,7 @@
 .opaque{
 	display: none;
 }
+
+.completed{
+	opacity: 0.2;
+}

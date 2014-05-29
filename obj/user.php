@@ -82,10 +82,7 @@ class user {
     *
     */
     public function setup_hero_list(){
-        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-
         //Check if there are no heroes uncompleted for the user, if so grab a new 10 hero set
-        
         if(count($this->heroes) == 0){
         	$this->get_new_hero_list();
         }
@@ -151,6 +148,7 @@ class user {
             $query->bind_result($this->current_timestamp);
             $query->fetch();
             $query->close();
+            $this->current_timestamp = intval($this->current_timestamp);
         }
 
     }
@@ -190,7 +188,8 @@ class user {
         $json_decoded_player = (json_decode($json_player, true));
         $hero = 0;
         foreach($json_decoded_player['result']['matches'] as $matches){
-            if($matches['timestamp'] > $this->current_timestamp){
+            $int_timestamp = intval($matches['timestamp']);
+            if($int_timestamp > $this->current_timestamp){
                 foreach($matches['players'] as $players){
                     if($players['account_id'] == $this->steamID_32){
                         $hero = $players['hero_id'];
