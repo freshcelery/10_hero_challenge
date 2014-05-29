@@ -15,7 +15,6 @@ include_once 'obj/hero.php';
 
 $OpenID = new LightOpenID("dota.keeganbailey.com");
 $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-//$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
 
 if (!$OpenID->mode) {
     if (isset($_GET['login'])) {
@@ -25,9 +24,6 @@ if (!$OpenID->mode) {
 
     if (!isset($_SESSION['SteamAuth'])) {
         $login = "<a href='?login'><img src='http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png'></a>";
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_border.png
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png
     }
 } elseif ($OpenID->mode == "cancel") {
     echo "Login Canceled";
@@ -60,35 +56,23 @@ if (isset($_GET['logout'])) {
 if (isset($_SESSION['SteamID64'])) {
     $SteamID64 = ltrim($_SESSION['SteamID64'], '/');
     $user = json_decode(file_get_contents("cache/$SteamID64.json"), true);
-    checkDBforFirstLogIn($user, $mysqli);
+    check_db_for_first_login($user, $mysqli);
 
 }
 
 //function that checks DB for user for the first time. if no there, creates.
-function checkDBforFirstLogIn($_user, mysqli $mysqli){
+function check_db_for_first_login($_user, mysqli $mysqli){
     try{
         //save username and id to vars
         $id = substr($_user['response']['players'][0]['steamid'], 3) - 61197960265728;
         $points = 0;
         $name = $_user['response']['players'][0]['personaname'];
 
-        //check DB for user
-        //$stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
         $result = $mysqli->query("SELECT * FROM ladder WHERE steam_id = $id");
 
         if (!$result) {
             die($mysqli->error);
         }
-
-        /*$results = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($stmt == null){
-            //if no user, insert new entry into DB
-            $sql = "INSERT INTO ladder (steam_id,points,name) VALUES (:steam_id,:points,:name)";
-            $q = $db->prepare($sql);
-            $q->execute(array(':steam_id'=>$id,
-                ':points'=>0,
-                ':name'=>$name));
-        }*/
 
         if (! $result->num_rows > 0) {
             $result = $mysqli->query("INSERT IGNORE INTO ladder (steam_id,points,name) VALUES ('$id', '$points', '$name')");
@@ -99,7 +83,39 @@ function checkDBforFirstLogIn($_user, mysqli $mysqli){
     }
 }
 
-function heroTableEmpty(){
+function generate_history_table(mysqli $mysqli){
+    $id = substr($_SESSION['SteamID64'], 3) - 61197960265728;
+
+    $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
+
+    if (!$result) {
+        die($mysqli->error);
+    }
+
+    $list = Array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $seq_id = $row['seq_id'];
+        $hero_id_string = $row['hero_id_string'];
+        $is_done = $row['is_done'];
+
+        //TODO: make or use a function to get all the images
+        $hero_id_string = get_hero_image_list($hero_id_string);
+
+        //This can be changed if we add a completed timestamp in, then I can have
+        //time completed and in progress
+        if($is_done){
+            $is_done = "Completed";
+        } else {
+            $is_done = "In Progress";
+        }
+        $list[] = "<tr>
+                     <td>{$seq_id}</td>
+                     <td>{$hero_id_string}</td>
+                     <td>{$is_done}</td>
+                   </tr>";
+    }
+
+    return $list;
 
 }
 
@@ -198,6 +214,8 @@ function generate_current_hero_table(){
                             <th>Heroes</th>
                             <th>Completed On</th>
                         </tr>";
+
+
         } else {
             echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
         }
