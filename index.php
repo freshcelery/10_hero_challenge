@@ -15,7 +15,6 @@ include_once 'obj/hero.php';
 
 $OpenID = new LightOpenID("dota.keeganbailey.com");
 $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-//$db = new PDO('mysql:host=localhost;dbname=dotakeeg_admin;charset=utf8', 'dotakeeg_admin', 'dota10');
 
 if (!$OpenID->mode) {
     if (isset($_GET['login'])) {
@@ -25,9 +24,6 @@ if (!$OpenID->mode) {
 
     if (!isset($_SESSION['SteamAuth'])) {
         $login = "<a href='?login'><img src='http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png'></a>";
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_border.png
-        //  http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_large_noborder.png
     }
 } elseif ($OpenID->mode == "cancel") {
     echo "Login Canceled";
@@ -72,23 +68,11 @@ function checkDBforFirstLogIn($_user, mysqli $mysqli){
         $points = 0;
         $name = $_user['response']['players'][0]['personaname'];
 
-        //check DB for user
-        //$stmt = $db->query("SELECT * FROM 'ladder' WHERE 'steam_id' = {$id}");
         $result = $mysqli->query("SELECT * FROM ladder WHERE steam_id = $id");
 
         if (!$result) {
             die($mysqli->error);
         }
-
-        /*$results = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($stmt == null){
-            //if no user, insert new entry into DB
-            $sql = "INSERT INTO ladder (steam_id,points,name) VALUES (:steam_id,:points,:name)";
-            $q = $db->prepare($sql);
-            $q->execute(array(':steam_id'=>$id,
-                ':points'=>0,
-                ':name'=>$name));
-        }*/
 
         if (! $result->num_rows > 0) {
             $result = $mysqli->query("INSERT IGNORE INTO ladder (steam_id,points,name) VALUES ('$id', '$points', '$name')");
@@ -99,7 +83,9 @@ function checkDBforFirstLogIn($_user, mysqli $mysqli){
     }
 }
 
-function heroTableEmpty(){
+function generate_history_table(){
+    $SteamID64 = $_SESSION['SteamID64'];
+
 
 }
 
@@ -193,6 +179,8 @@ function generate_current_hero_table(){
                             <th>Heroes</th>
                             <th>Completed On</th>
                         </tr>";
+
+
         } else {
             echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
         }
