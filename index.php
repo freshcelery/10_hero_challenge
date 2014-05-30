@@ -100,7 +100,7 @@ function generate_history_table(mysqli $mysqli){
         $hero_id_string = $row['hero_id_string'];
         $is_done = $row['is_done'];
 
-        $hero_id_array = explode($hero_id_string, ",");
+        $hero_id_array = explode(",", $hero_id_string);
 
         $image_text = '';
         foreach($hero_id_array as $hero_id){
