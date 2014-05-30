@@ -135,7 +135,7 @@ function generate_current_hero_table(){
             foreach($current_heroes as $hero_id => $completed){
                 $hero_obj = new hero($hero_id);
                 if($completed == 'true'){
-                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid completed'></div>";
+                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid-completed'></div>";
                 }
                 else{
                     echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
