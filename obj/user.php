@@ -44,6 +44,7 @@ class user {
         $this->get_10_heroes_from_db();
         $this->get_match_id();
         $this->ten_hero_test();
+        $this->get_reroll_from_db();
         //$this->reroll_incomplete_heroes();
     }
 
@@ -109,7 +110,7 @@ class user {
         }
 
         $this->heroes = $this->heroes + $temp_hero_array;
-        $this->reroll_available = false;
+        $this->reroll_available = 0;
         $update_reroll = "UPDATE hero SET reroll_available = false WHERE steam_id = ?";
         if($query = $mysqli->prepare($update_reroll)){
             $query->bind_param("s",$this->steamID_32);
@@ -416,6 +417,9 @@ class user {
         			$uncompleted_heroes .= $hero.",";
         		}
         	}
+
+            $completed_heroes = rtrim($completed_heroes, ',');
+            $uncompleted_heroes = rtrim($uncompleted_heroes, ',');
         }
         // Updates the database with the completed heroes of this 10 hero set
     	$update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ?";
@@ -495,6 +499,7 @@ class user {
     * Store boolean result in $this->reroll_available
     */
     private function get_reroll_from_db(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
         $select_reroll = "SELECT reroll_available FROM hero WHERE steam_id = ?";
         if($complete_query = $mysqli->prepare($select_reroll)){
             $complete_query->bind_param("s",$this->steamID_32);
