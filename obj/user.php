@@ -21,12 +21,23 @@ class user {
 
     private $steamID;
     private $steamID_32;
+
     //holds key value pair of hero_id => completed (true or false)
     private $heroes = Array();
-    private $current_timestamp;
+
+    //Holds key value pair of match_id => hero_id 
     private $matches_after_timestamp = Array();
-    private $seq_num;
+
+    //Holds all unique hero ids
     private $all_hero_ids = Array();
+
+    //Current Unix Timestamp
+    private $current_timestamp;
+
+    //Current sequence number
+    private $seq_num;
+
+    //If the user has the option to reroll their uncompleted heroes (1 reroll per sequence)
     private $reroll_available;
 
 
@@ -40,6 +51,8 @@ class user {
 
         $this->steamID = $_steamID;
         $this->steamID_32 = $this->convert_id($_steamID);
+
+        $this->get_seq_from_db();
         $this->insert_new_user();
         $this->get_10_heroes_from_db();
         $this->get_match_id();
@@ -48,39 +61,27 @@ class user {
         //$this->reroll_incomplete_heroes();
     }
 
-    /*
-	*Function used to convert the user's 64 bit ID to a 32 bit ID or vice versa
-	*
-	* $id - the user's 32 or 64 bit id to be changed
-	*/
-	private function convert_id($id){
-        if (strlen($id) === 17){
-            $converted = substr($id, 3) - 61197960265728;
-        }
-        else{
-            $converted = '765'.($id + 61197960265728);
-        }
-    return (string) $converted;
-}
-
+    /* START PUBLIC FUNCTIONS */
 
     // Returns the 64 bit steam ID of the user
     public function get_steamID(){
         return $this->steamID;
     }
 
-
     // Returns the 32 bit steam ID of the user
     public function get_steamID_32(){
         return $this->steamID_32;
     }
 
-
-
     // Return a sorted array of hero ids
     public function get_hero_list(){
         ksort($this->heroes);
         return $this->heroes;
+    }
+
+    //Return the user's current sequence number
+    public function get_current_sequence(){
+        return $this->seq_num;
     }
 
     // Returns a boolean value depicting if you can reroll your incomplete heroes
@@ -89,7 +90,7 @@ class user {
     }
 
     /*
-    *
+    * Delete the user's incomplete heroes and replace them with new heroes to play, can only run once per sequence
     *
     */
     public function reroll_incomplete_heroes(){
@@ -111,9 +112,9 @@ class user {
 
         $this->heroes = $this->heroes + $temp_hero_array;
         $this->reroll_available = 0;
-        $update_reroll = "UPDATE hero SET reroll_available = false WHERE steam_id = ?";
+        $update_reroll = "UPDATE hero SET reroll_available = false WHERE steam_id = ? AND seq_id = ?";
         if($query = $mysqli->prepare($update_reroll)){
-            $query->bind_param("s",$this->steamID_32);
+            $query->bind_param("si",$this->steamID_32, $this->seq_num);
             $query->execute();
             $query->close();
         }
@@ -121,23 +122,78 @@ class user {
         $this->update_db_heroes();
     }
 
+
+    /* END PUBLIC FUNCTIONS*/
+
+
+
+    /* START USER CREATION FUNCTIONS */
+
+        /*
+    *Function used to convert the user's 64 bit ID to a 32 bit ID or vice versa
+    *
+    * $id - the user's 32 or 64 bit id to be changed
+    */
+    private function convert_id($id){
+        if (strlen($id) === 17){
+            $converted = substr($id, 3) - 61197960265728;
+        }
+        else{
+            $converted = '765'.($id + 61197960265728);
+        }
+    return (string) $converted;
+}
+
+
+        /*
+    * Checks the database if the current 32 bit steam ID exists in the DB, if not, create a new user with that ID
+    * 
+    * Calls $this->setup_hero_list() if the user doesn't already exist
+    */
+    private function insert_new_user(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
+        $select_from_db = "SELECT steam_id FROM hero WHERE steam_id = ? AND seq_id = ?";
+        if($select_query = $mysqli->prepare($select_from_db)){
+            $select_query->bind_param("si", $this->steamID_32, $this->seq_num);
+            $select_query->execute();
+            if($select_query->fetch()){
+                $select_query->close();
+            }
+            else{
+
+                $this->seq_num++;
+                if(isset($this->steamID_32)){
+                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, true)";
+                    if($query = $mysqli->prepare($statement)){
+                        $query->bind_param("si", $this->steamID_32, $this->seq_num);
+                        $query->execute();
+                        $query->close();               
+                    }
+                }
+                $this->setup_hero_list(); 
+            }
+        }
+    }
+
+
     /*
     * Sets up hero list. If first time, creates hero list
     *
     */
-    public function setup_hero_list(){
+    private function setup_hero_list(){
         //Check if there are no heroes uncompleted for the user, if so grab a new 10 hero set
         if(count($this->heroes) == 0){
         	$this->get_new_hero_list();
         }
     }
 
-
     /*
     * Get a new list of 10 heroes to be played, pushes the 10 heroes to the $heroes array
     *
+    * Calls $this->update_db_heroes()
     */
-    public function get_new_hero_list(){
+    private function get_new_hero_list(){
         $this->get_hero_ids();
         //get 10 heroes and store hero_id in $this->heroes array
         $random_hero_array = array_rand($this->all_hero_ids, 10);
@@ -156,7 +212,8 @@ class user {
 
     /*
     * Get a list of all hero IDs for creating a new list of 10 heros
-    * Returns an array containing all IDs
+    *
+    * Sets $this->all_hero_ids to an array of all unique hero IDS
     */
     private function get_hero_ids(){
 
@@ -170,22 +227,23 @@ class user {
 
     /*
     * Set current Unix timestamp on the Database and updates the current_timestamp variable to be the same
+    *
     */
     private function set_timestamp(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
         // Update the database to have the current timestamp
-        $update_sql = "UPDATE hero SET create_timestamp=(SELECT UNIX_TIMESTAMP(NOW())) WHERE steam_id= ?";
+        $update_sql = "UPDATE hero SET create_timestamp=(SELECT UNIX_TIMESTAMP(NOW())) WHERE steam_id= ? AND seq_id = ?";
         if($q = $mysqli->prepare($update_sql)){   
-            $q->bind_param("s", $this->steamID_32);
+            $q->bind_param("si", $this->steamID_32, $this->seq_num);
             $q->execute();
             $q->close();
         }
 
     	// Grab the current timestamp from the database
-        $select_time = "SELECT create_timestamp FROM hero WHERE steam_id = ?";
+        $select_time = "SELECT create_timestamp FROM hero WHERE steam_id = ? AND seq_id = ?";
         if($query = $mysqli->prepare($select_time)){
-            $query->bind_param("s",$this->steamID_32);
+            $query->bind_param("si",$this->steamID_32, $this->seq_num);
             $query->execute();
             $query->bind_result($this->current_timestamp);
             $query->fetch();
@@ -194,33 +252,11 @@ class user {
         }
     }
 
-
-
-    /*
-    * Function to get the hero names of their most recent 25 dota2 matches
-    *
-    * $player_json - The parsable json for the last 25 matches of the user
-    * $account_id_32 - the 32 bit account id of the user, used for finding which player the hero is in a game
-    */
-    private function get_player_info($player_json, $account_id_32){
-
-        $json_heroes = file_get_contents('../js/json/heroes.json');
-        $json_decoded_heroes = (json_decode($json_heroes, true));
-
-        foreach($player_json->result->matches as $matches){
-            foreach($matches->players as $players){
-                if($players->account_id == $account_id_32){
-                    $hero_id = $players->hero_id;
-                }
-            }
-        }
-    }
-
-
     /*
     * Retrieves a list of all matches played by the user after the current_timestamp
     * 
-    * sets $matches_after_timestamp array to the matches retrieved, sets the current timestamp to now
+    * Sets $this->matches_after_timestamp key to the match retrieved and the value to the hero ID played
+    * Sets the current timestamp to now
     */
     private function get_match_id(){
 
@@ -242,6 +278,8 @@ class user {
                     }
                     $match_id = $matches['match_id'];
                     $this->matches_after_timestamp[$match_id] = $hero;
+
+                    //Set timestamp to now to avoid re-checking previously checked matches
                     $this->set_timestamp();
                 }
             }
@@ -255,8 +293,6 @@ class user {
     * Returns true if the player won, false if they lost
     */
     private function did_user_win($match_id){
-
-
 
         $json_match = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&match_id='.$match_id);
         $json_decoded_match = json_decode($json_match, true);
@@ -387,15 +423,46 @@ class user {
     	}
     	//If all heres are completed unset the heroes array
     	unset($this->heroes);
-
-    	// Updates the database with the completed heroes of this 10 hero set
-        $update_uncompleted = "UPDATE hero SET complete_id_string = NULL WHERE steam_id = ?";
-       	if($query = $mysqli->prepare($update_uncompleted)){
-            $query->bind_param("s",$this->steamID_32);
-            $query->execute();
-            $query->close();
-        }
+        $this->seq_num++;
+        $this->insert_new_user();
     }
+
+
+
+
+
+    /* START GET DATABASE INFORMATION FUNCTIONS */
+
+        /*
+    * Get the current sequence number for this user from the database
+    *
+    * Sets the sequence number to 0 if there is no sequence number set
+    */
+    private function get_seq_from_db(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+        $seq_num_array;
+        $select_from_db = "SELECT seq_id FROM hero WHERE steam_id = ?";
+        if($select_query = $mysqli->prepare($select_from_db)){
+            $select_query->bind_param("s", $this->steamID_32);
+            $select_query->execute();
+            $select_query->bind_result($seq_num_array);
+            if($select_query->fetch()){
+                $select_query->close();
+                if(is_array($seq_num_array)){
+                    $this->seq_num = end($seq_num_array);
+                }
+                else{
+                    $this->seq_num = $seq_num_array;
+                }
+            }
+            else{
+                $this->seq_num = 0;
+            }
+        }
+
+
+    }
+
 
     /*
     * Update the database to contain the current 10 heroes, and whether they have been completed or not
@@ -405,57 +472,56 @@ class user {
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
         
         // Create 2 empty strings for handling the delimited input
-    	$completed_heroes;
-    	$uncompleted_heroes;
-    	if(count($this->heroes) > 0){
-    		//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
-        	foreach($this->heroes as $hero => $completed){
-        		if($completed == 1){
-        			$completed_heroes .= $hero.",";
-        		}
-        		else{
-        			$uncompleted_heroes .= $hero.",";
-        		}
-        	}
+        $completed_heroes;
+        $uncompleted_heroes;
+        if(count($this->heroes) > 0){
+            //Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
+            foreach($this->heroes as $hero => $completed){
+                if($completed == 1){
+                    $completed_heroes .= $hero.",";
+                }
+                else{
+                    $uncompleted_heroes .= $hero.",";
+                }
+            }
 
             $completed_heroes = rtrim($completed_heroes, ',');
             $uncompleted_heroes = rtrim($uncompleted_heroes, ',');
         }
         // Updates the database with the completed heroes of this 10 hero set
-    	$update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ?";
-       	if($query = $mysqli->prepare($update_completed)){
-            $query->bind_param("ss",$completed_heroes, $this->steamID_32);
+        $update_completed = "UPDATE hero SET complete_id_string = ? WHERE steam_id = ? AND seq_id = ?";
+        if($query = $mysqli->prepare($update_completed)){
+            $query->bind_param("ssi",$completed_heroes, $this->steamID_32, $this->seq_num);
             $query->execute();
             $query->close();
         }
 
         // Updates the database with the uncompleted heroes of this 10 hero set
-        $update_uncompleted = "UPDATE hero SET hero_id_string = ? WHERE steam_id = ?";
-       	if($query = $mysqli->prepare($update_uncompleted)){
-            $query->bind_param("ss",$uncompleted_heroes, $this->steamID_32);
+        $update_uncompleted = "UPDATE hero SET hero_id_string = ? WHERE steam_id = ? AND seq_id = ?";
+        if($query = $mysqli->prepare($update_uncompleted)){
+            $query->bind_param("ssi",$uncompleted_heroes, $this->steamID_32, $this->seq_num);
             $query->execute();
             $query->close();
         }
     }
 
-
-    /*
+ /*
     * Grab the 10 heroes from the database and populate the $this->heroes Array 
     *
     */
     private function get_10_heroes_from_db(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
-    	// Create empty variables
-    	$completed_heroes;
-    	$uncompleted_heroes;
-    	$completed_hero_array = Array();
-    	$uncompleted_hero_array = Array();
+        // Create empty variables
+        $completed_heroes;
+        $uncompleted_heroes;
+        $completed_hero_array = Array();
+        $uncompleted_hero_array = Array();
 
-    	// Grab the uncompleted heroes for this user
-        $select_uncomplete_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ?";
+        // Grab the uncompleted heroes for this user
+        $select_uncomplete_heroes = "SELECT hero_id_string FROM hero WHERE steam_id = ? AND seq_id = ?";
         if($uncomplete_query = $mysqli->prepare($select_uncomplete_heroes)){
-            $uncomplete_query->bind_param("s",$this->steamID_32);
+            $uncomplete_query->bind_param("si",$this->steamID_32, $this->seq_num);
             $uncomplete_query->execute();
             $uncomplete_query->bind_result($uncompleted_heroes);
             $uncomplete_query->fetch();
@@ -463,9 +529,9 @@ class user {
         }
 
         // Grab the completed heroes for this user
-        $select_completed_heroes = "SELECT complete_id_string FROM hero WHERE steam_id = ?";
+        $select_completed_heroes = "SELECT complete_id_string FROM hero WHERE steam_id = ? AND seq_id = ?";
         if($complete_query = $mysqli->prepare($select_completed_heroes)){
-            $complete_query->bind_param("s",$this->steamID_32);
+            $complete_query->bind_param("si",$this->steamID_32, $this->seq_num);
             $complete_query->execute();
             $complete_query->bind_result($completed_heroes);
             $complete_query->fetch();
@@ -473,22 +539,22 @@ class user {
         }
         if(isset($uncompleted_heroes)){
             unset($this->heroes);
-        	// Explode the strings by comma to get a list of the completed and uncompleted heroes
+            // Explode the strings by comma to get a list of the completed and uncompleted heroes
             if(isset($completed_heroes)){
-        	   $completed_hero_array = explode(",",$completed_heroes,10);
+               $completed_hero_array = explode(",",$completed_heroes,10);
             }
-        	$uncompleted_hero_array = explode(",",$uncompleted_heroes,10);
+            $uncompleted_hero_array = explode(",",$uncompleted_heroes,10);
 
-        	// Update the heroes array to contain the correct heroes from DB
+            // Update the heroes array to contain the correct heroes from DB
             if(count($completed_hero_array) != 0){
-        	   foreach($completed_hero_array as $hero){
-        		  $this->heroes[$hero] = 1;
-        	   }
+               foreach($completed_hero_array as $hero){
+                  $this->heroes[$hero] = 1;
+               }
             }
             if(count($uncompleted_hero_array) != 0){
-        	   foreach($uncompleted_hero_array as $hero){
-        		  $this->heroes[$hero] = 0;
-        	   }
+               foreach($uncompleted_hero_array as $hero){
+                  $this->heroes[$hero] = 0;
+               }
             }
         }
     }
@@ -500,9 +566,10 @@ class user {
     */
     private function get_reroll_from_db(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-        $select_reroll = "SELECT reroll_available FROM hero WHERE steam_id = ?";
+
+        $select_reroll = "SELECT reroll_available FROM hero WHERE steam_id = ? AND seq_id = ?";
         if($complete_query = $mysqli->prepare($select_reroll)){
-            $complete_query->bind_param("s",$this->steamID_32);
+            $complete_query->bind_param("si",$this->steamID_32, $this->seq_num);
             $complete_query->execute();
             $complete_query->bind_result($this->reroll_available);
             $complete_query->fetch();
@@ -510,34 +577,8 @@ class user {
         }
     }
 
-    /*
-    * Checks the database if the current 32 bit steam ID exists in the DB, if not, create a new user with that ID
-    * 
-    * Calls $this->setup_hero_list() if the user doesn't already exist
-    */
-    private function insert_new_user(){
-        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+/* END GET DATABASE INFORMATION FUNCTIONS */
 
-        $select_from_db = "SELECT steam_id FROM hero WHERE steam_id = ?";
-        if($select_query = $mysqli->prepare($select_from_db)){
-            $select_query->bind_param("s", $this->steamID_32);
-            $select_query->execute();
-            if($select_query->fetch()){
-                $select_query->close();
-            }
-            else{
+}//End user class
 
-                $this->seq_num++;
-                if(isset($this->steamID_32)){
-                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, true)";
-                    if($query = $mysqli->prepare($statement)){
-                        $query->bind_param("si", $this->steamID_32, $this->seq_num);
-                        $query->execute();
-                        $query->close();               
-                    }
-                }
-                $this->setup_hero_list(); 
-            }
-        }
-    }
-}
+?>
