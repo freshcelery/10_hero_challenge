@@ -87,20 +87,26 @@ function check_db_for_first_login($_user, mysqli $mysqli){
 function generate_history_table(mysqli $mysqli){
     $id = substr($_SESSION['SteamID64'], 3) - 61197960265728;
 
+    //get needed things from DB
     $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
 
     if (!$result) {
         die($mysqli->error);
     }
 
-    $list = Array();
+    //for each row returned in query pull outi nfo needed, then create hero objects for every ID. make the table data and print it till out of rows.
     while ($row = mysqli_fetch_assoc($result)) {
         $seq_id = $row['seq_id'];
         $hero_id_string = $row['hero_id_string'];
         $is_done = $row['is_done'];
 
-        //TODO: make or use a function to get all the images
-        $hero_id_string = get_hero_image_list($hero_id_string);
+        $hero_id_array = explode(",", $hero_id_string);
+
+        $image_text = '';
+        foreach($hero_id_array as $hero_id){
+            $hero = new hero($hero_id);
+            $image_text .= '<div class="span1"><img src="'. $hero->get_image() .'" class="img-polaroid"></div>';
+        }
 
         //This can be changed if we add a completed timestamp in, then I can have
         //time completed and in progress
@@ -109,15 +115,12 @@ function generate_history_table(mysqli $mysqli){
         } else {
             $is_done = "In Progress";
         }
-        $list[] = "<tr>
-                     <td>{$seq_id}</td>
-                     <td>{$hero_id_string}</td>
-                     <td>{$is_done}</td>
-                   </tr>";
+        echo "<tr>
+                 <td>{$seq_id}</td>
+                 <td>{$image_text}</td>
+                 <td>{$is_done}</td>
+              </tr>";
     }
-
-    return $list;
-
 }
 
 function generate_current_hero_table(){
@@ -132,7 +135,7 @@ function generate_current_hero_table(){
             foreach($current_heroes as $hero_id => $completed){
                 $hero_obj = new hero($hero_id);
                 if($completed == 'true'){
-                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid completed'></div>";
+                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid-completed'></div>";
                 }
                 else{
                     echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
@@ -221,6 +224,11 @@ function generate_current_hero_table(){
                             <th>Heroes</th>
                             <th>Completed On</th>
                         </tr>";
+                generate_history_table($mysqli);
+                echo "</table>";
+                echo "</div></div>";
+
+
 
 
         } else {
