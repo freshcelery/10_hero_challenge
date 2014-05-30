@@ -27,6 +27,7 @@ class user {
     private $matches_after_timestamp = Array();
     private $seq_num;
     private $all_hero_ids = Array();
+    private $reroll_available;
 
 
     /*
@@ -43,6 +44,7 @@ class user {
         $this->get_10_heroes_from_db();
         $this->get_match_id();
         $this->ten_hero_test();
+        //$this->reroll_incomplete_heroes();
     }
 
     /*
@@ -74,9 +76,48 @@ class user {
 
 
 
-    // Return a array of hero ids
+    // Return a sorted array of hero ids
     public function get_hero_list(){
+        ksort($this->heroes);
         return $this->heroes;
+    }
+
+    // Returns a boolean value depicting if you can reroll your incomplete heroes
+    public function get_reroll_available(){
+        return $this->reroll_available;
+    }
+
+    /*
+    *
+    *
+    */
+    public function reroll_incomplete_heroes(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
+        //Create a temporary hero array to store the new heroes while we loop through
+        $temp_hero_array = Array();
+        foreach($this->heroes as $hero => $completed){
+            if($completed == 0){
+                //Get a new random hero ID
+                $random_hero = array_rand($this->all_hero_ids);
+                $new_hero_id = $this->all_hero_ids[$random_hero];
+
+                //Unset the current hero and replace it with the new hero ID
+                unset($this->heroes[$hero]);
+                $temp_hero_array[$new_hero_id] = 0;
+            }
+        }
+
+        $this->heroes = $this->heroes + $temp_hero_array;
+        $this->reroll_available = false;
+        $update_reroll = "UPDATE hero SET reroll_available = false WHERE steam_id = ?";
+        if($query = $mysqli->prepare($update_reroll)){
+            $query->bind_param("s",$this->steamID_32);
+            $query->execute();
+            $query->close();
+        }
+
+        $this->update_db_heroes();
     }
 
     /*
@@ -150,7 +191,6 @@ class user {
             $query->close();
             $this->current_timestamp = intval($this->current_timestamp);
         }
-
     }
 
 
@@ -189,7 +229,7 @@ class user {
         $hero = 0;
         if($json_decoded_player['result']['matches']){
             foreach($json_decoded_player['result']['matches'] as $matches){
-                $int_timestamp = intval($matches['timestamp']);
+                $int_timestamp = intval($matches['start_time']);
                 if($int_timestamp > $this->current_timestamp){
                     foreach($matches['players'] as $players){
                         if($players['account_id'] == $this->steamID_32){
@@ -322,6 +362,7 @@ class user {
 
         //Unsets $matches_after_timestamp on completion so we don't have to loop through already checked matches 
         unset($this->matches_after_timestamp);
+        $this->update_db_heroes();
         $this->check_if_heroes_remain();
     }
 
@@ -395,7 +436,7 @@ class user {
 
 
     /*
-    * Grab the 10 heroes from the database and populate the heroes Array 
+    * Grab the 10 heroes from the database and populate the $this->heroes Array 
     *
     */
     private function get_10_heroes_from_db(){
@@ -448,7 +489,27 @@ class user {
         }
     }
 
+    /*
+    * Query the database to find if the user still has a hero reroll available for this set
+    *
+    * Store boolean result in $this->reroll_available
+    */
+    private function get_reroll_from_db(){
+        $select_reroll = "SELECT reroll_available FROM hero WHERE steam_id = ?";
+        if($complete_query = $mysqli->prepare($select_reroll)){
+            $complete_query->bind_param("s",$this->steamID_32);
+            $complete_query->execute();
+            $complete_query->bind_result($this->reroll_available);
+            $complete_query->fetch();
+            $complete_query->close();
+        }
+    }
 
+    /*
+    * Checks the database if the current 32 bit steam ID exists in the DB, if not, create a new user with that ID
+    * 
+    * Calls $this->setup_hero_list() if the user doesn't already exist
+    */
     private function insert_new_user(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
@@ -463,7 +524,7 @@ class user {
 
                 $this->seq_num++;
                 if(isset($this->steamID_32)){
-                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id) VALUES (?, ?)";
+                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, true)";
                     if($query = $mysqli->prepare($statement)){
                         $query->bind_param("si", $this->steamID_32, $this->seq_num);
                         $query->execute();
