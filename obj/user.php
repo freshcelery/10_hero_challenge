@@ -26,6 +26,7 @@ class user {
     private $current_timestamp;
     private $matches_after_timestamp = Array();
     private $seq_num;
+    private $all_hero_ids = Array();
 
 
     /*
@@ -95,14 +96,15 @@ class user {
     *
     */
     public function get_new_hero_list(){
+        $this->get_hero_ids();
         //get 10 heroes and store hero_id in $this->heroes array
-        $hero_ids = array_rand($this->get_hero_ids(), 10);
+        $random_hero_array = array_rand($this->all_hero_ids, 10);
 
         //Set current_timestamp to the current time.
        	$this->set_timestamp();
 
-        foreach($hero_ids as $id){
-           	$this->heroes[$id] = 'false';
+        foreach($random_hero_array as $id){
+           	$this->heroes[$random_hero_array[$id]] = 'false';
         }
 
         $this->update_db_heroes();
@@ -117,11 +119,9 @@ class user {
 
         $json_heroes = file_get_contents('https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&language=en_us');
         $json_decoded_heroes = (json_decode($json_heroes, true));
-        $hero_id_array = array();
         foreach($json_decoded_heroes['result']['heroes'] as $hero){
-            array_push($hero_id_array, $hero['id']);
+            array_push($this->all_hero_ids, $hero['id']);
         }
-        return $hero_id_array;
     }
 
 
