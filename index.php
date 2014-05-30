@@ -146,6 +146,11 @@ function generate_current_hero_table(){
                 }
             }
         }
+
+        $reroll = $current_user->get_reroll_available;
+        if($reroll == 1){
+            echo "<input type='button' class='reroll' value='Reroll Heroes' />";
+        }
     }
 }
 
