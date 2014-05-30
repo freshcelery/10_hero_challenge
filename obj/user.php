@@ -104,7 +104,8 @@ class user {
        	$this->set_timestamp();
 
         foreach($random_hero_array as $id){
-           	$this->heroes[$random_hero_array[$id]] = 'false';
+            $value = $this->all_hero_ids[$id];
+           	$this->heroes[$value] = 0;
         }
 
         $this->update_db_heroes();
@@ -313,7 +314,7 @@ class user {
                 if($hero_id == $hero){
                     $win = $this->did_user_win($match);
                     if($win){
-                        $this->heroes[$hero] = 'true';
+                        $this->heroes[$hero] = 1;
                     }
                 }
             }
@@ -334,7 +335,7 @@ class user {
 
     	foreach($this->heroes as $hero_id => $completed){
     		//If the hero is completed, continue iteration
-    		if($completed){
+    		if($completed == 1){
     			continue;
     		}
     		//If the hero isn't completed end the function
@@ -367,7 +368,7 @@ class user {
     	if(count($this->heroes) > 0){
     		//Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
         	foreach($this->heroes as $hero => $completed){
-        		if($completed == 'true'){
+        		if($completed == 1){
         			$completed_heroes .= $hero.",";
         		}
         		else{
@@ -426,6 +427,7 @@ class user {
             $complete_query->close();
         }
         if(isset($uncompleted_heroes)){
+            unset($this->heroes);
         	// Explode the strings by comma to get a list of the completed and uncompleted heroes
             if(isset($completed_heroes)){
         	   $completed_hero_array = explode(",",$completed_heroes,10);
@@ -435,12 +437,12 @@ class user {
         	// Update the heroes array to contain the correct heroes from DB
             if(count($completed_hero_array) != 0){
         	   foreach($completed_hero_array as $hero){
-        		  $this->heroes[$hero] = true;
+        		  $this->heroes[$hero] = 1;
         	   }
             }
             if(count($uncompleted_hero_array) != 0){
         	   foreach($uncompleted_hero_array as $hero){
-        		  $this->heroes[$hero] = false;
+        		  $this->heroes[$hero] = 0;
         	   }
             }
         }

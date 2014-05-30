@@ -104,8 +104,10 @@ function generate_history_table(mysqli $mysqli){
 
         $image_text = '';
         foreach($hero_id_array as $hero_id){
-            $hero = new hero($hero_id);
-            $image_text .= '<div class="span1"><img src="'. $hero->get_image() .'" class="img-polaroid"></div>';
+            if(!empty($hero_id)){
+                $hero = new hero($hero_id);
+                $image_text .= '<div class="span1"><img src="'. $hero->get_image() .'" class="img-polaroid"></div>';
+            }
         }
 
         //This can be changed if we add a completed timestamp in, then I can have
@@ -133,12 +135,14 @@ function generate_current_hero_table(){
         $current_heroes = $current_user->get_hero_list();
         if(isset($current_heroes)){
             foreach($current_heroes as $hero_id => $completed){
-                $hero_obj = new hero($hero_id);
-                if($completed == 'true'){
-                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid-completed'></div>";
-                }
-                else{
-                    echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
+                if($hero_id > 0){
+                    $hero_obj = new hero($hero_id);
+                    if($completed == 0){
+                        echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid'></div>";
+                    }
+                    else{
+                        echo"<div class='span2'><img src='".$hero_obj->get_image()."' class='img-polaroid completed'></div>";
+                    }
                 }
             }
         }
