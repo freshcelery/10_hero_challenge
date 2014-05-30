@@ -195,6 +195,7 @@ function generate_current_hero_table(){
                 $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
                 $ladder_stmt->execute();
                 $ladder_results = $ladder_stmt->fetch();
+
             /*
             $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
             if(select_stmt == null){
