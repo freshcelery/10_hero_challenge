@@ -115,9 +115,7 @@ function generate_history_table(mysqli $mysqli){
                      <td>{$is_done}</td>
                    </tr>";
     }
-
     return $list;
-
 }
 
 function generate_current_hero_table($user){
