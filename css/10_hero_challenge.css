@@ -16,3 +16,8 @@
 .completed{
 	opacity: 0.2;
 }
+
+.reroll{
+	margin-left:30px;
+	margin-top: 10px;
+}

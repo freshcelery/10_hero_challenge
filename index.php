@@ -146,8 +146,17 @@ function generate_current_hero_table(){
                 }
             }
         }
+    }
+}
 
-        $reroll = $current_user->get_reroll_available;
+function make_reroll_button(){
+    if(($_SESSION['SteamID64'] > '2147483647')){
+        $SteamID_ = $_SESSION['SteamID64'];
+    
+
+        $current_user = new user($SteamID_);
+
+        $reroll = $current_user->get_reroll_available();
         if($reroll == 1){
             echo "<input type='button' class='reroll' value='Reroll Heroes' />";
         }
@@ -170,6 +179,12 @@ function generate_current_hero_table(){
             $('.loading').fadeOut('slow');
             $('.jumbotron').fadeIn('slow');
         })// end load
+        /*
+        $(function(){
+            $('.reroll').click(function(){
+                    //Do AJAX here
+            });//end click
+        }); // end document ready */
     </script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
@@ -224,6 +239,9 @@ function generate_current_hero_table(){
                 echo '<div class="span12"><h5>Your 10 heroes</h5>';
                 generate_current_hero_table();
                 echo'</div>';
+                echo '<div class="span12">';
+                make_reroll_button();
+                echo '</div>';
 
                 echo "<div class=\"span12\"><h5>History</h5></div>
                 <div class=\"span12\">
