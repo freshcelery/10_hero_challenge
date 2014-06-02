@@ -447,8 +447,20 @@ class user {
     	   unset($this->heroes);
             $this->seq_num++;
             $this->insert_new_user();
-            //$this->add_points_to_user();
+            $this->add_points_to_user();
         }
+    }
+
+    private function add_points_to_user(){
+        $this->get_user_points();
+        $this->current_points += 100;
+
+        $update_points_query = "UPDATE ladder SET points = ? WHERE steam_id = ?";
+        if($query = $mysqli->prepare($update_points_query){
+            $query->bind_param("is",$this->current_points, $this->steamID_32);
+            $query->execute();
+            $query->close();
+        } 
     }
 
 
