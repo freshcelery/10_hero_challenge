@@ -40,11 +40,8 @@
 }
 
 .history_div{
-	width: 70px;
+	max-width: 8%;
+	height: auto;
 	float: left;
-	margin-left:20px;
-}
-
-.hero_image_td{
-	padding: 0px;
+	margin-left: 2%;
 }
