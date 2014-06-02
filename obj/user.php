@@ -12,10 +12,7 @@
  */
 
 
-
 include_once 'hero.php';
-
-
 
 class user {
 
@@ -100,6 +97,8 @@ class user {
     */
     public function reroll_incomplete_heroes(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
+        $this->get_10_heroes_from_db();
 
         //Create a temporary hero array to store the new heroes while we loop through
         $temp_hero_array = Array();
@@ -620,4 +619,4 @@ class user {
 
 }//End user class
 
-?>b
+?>
