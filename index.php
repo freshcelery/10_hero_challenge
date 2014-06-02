@@ -100,7 +100,7 @@ if (isset($_SESSION['SteamID64'])) {
                 //Refresh the page
                 location.reload(true);
             }
-        }); // end document ready 
+        }); // end document ready
     </script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
@@ -138,14 +138,6 @@ if (isset($_SESSION['SteamID64'])) {
                 $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
                 $ladder_stmt->execute();
                 $ladder_results = $ladder_stmt->fetch();
-
-            /*
-            $select_stmt = $db->query("SELECT * FROM 'hero' WHERE 'steam_id' = {$user['response']['players'][0]['steamid']}");
-            if(select_stmt == null){
-                $select_results = heroTableEmpty();
-            } else {
-                $select_results = $select_stmt->fetch(PDO::FETCH_ASSOC);
-            } */
 
             echo "<div class=\"row\">";
                 echo "<div class=\"userName\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
