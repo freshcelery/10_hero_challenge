@@ -27,3 +27,14 @@
 	margin-left:30px;
 	margin-top: 10px;
 }
+
+.userName{
+	width: 80%;
+	float:left;
+	margin-left: 30px;
+}
+
+.offset10{
+	float:right;
+	width:15%;
+}

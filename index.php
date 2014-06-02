@@ -148,7 +148,7 @@ if (isset($_SESSION['SteamID64'])) {
             } */
 
             echo "<div class=\"row\">";
-                echo "<div class=\"span1\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
+                echo "<div class=\"userName\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
                 echo "<div class=\"span1 offset10\"><h4>Points: {$ladder_results['points']}</h4></div>";
                 echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
                 echo '<div class="span12"><hr></div>';
