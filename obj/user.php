@@ -40,6 +40,8 @@ class user {
     //If the user has the option to reroll their uncompleted heroes (1 reroll per sequence)
     private $reroll_available;
 
+    private $current_points;
+
 
     /*
     * Constructor function for creating a new user object
@@ -54,11 +56,10 @@ class user {
 
         $this->get_seq_from_db();
         $this->insert_new_user();
+        $this->get_reroll_from_db();
         $this->get_10_heroes_from_db();
         $this->get_match_id();
         $this->ten_hero_test();
-        $this->get_reroll_from_db();
-        //$this->reroll_incomplete_heroes();
     }
 
     /* START PUBLIC FUNCTIONS */
@@ -89,6 +90,10 @@ class user {
         return $this->reroll_available;
     }
 
+    public function get_current_points(){
+        return $this->current_points;
+    }
+
     /*
     * Delete the user's incomplete heroes and replace them with new heroes to play, can only run once per sequence
     *
@@ -98,21 +103,33 @@ class user {
 
         //Create a temporary hero array to store the new heroes while we loop through
         $temp_hero_array = Array();
-        foreach($this->heroes as $hero => $completed){
-            if($completed == 0){
-                //Get a new random hero ID
-                $random_hero = array_rand($this->all_hero_ids);
-                $new_hero_id = $this->all_hero_ids[$random_hero];
 
-                //Unset the current hero and replace it with the new hero ID
-                unset($this->heroes[$hero]);
-                $temp_hero_array[$new_hero_id] = 0;
+        //Set the all_hero_ids array if it is not already set
+        $this->get_hero_ids();
+
+        foreach($this->heroes as $hero => $completed){
+            if($hero > 0){
+                if($completed == 0){
+                    //Get a new random hero ID
+
+                    $random_hero = array_rand($this->all_hero_ids);
+                    $new_hero_id = $this->all_hero_ids[$random_hero];
+                    $temp_hero_array[$new_hero_id] = 0;
+                }
+                else{
+                    $temp_hero_array[$hero] = 1;
+                }
             }
         }
 
-        $this->heroes = $this->heroes + $temp_hero_array;
+        //Set the heroes array to the newly created array
+        $this->heroes = $temp_hero_array;
+
+        //set reroll to 0 to indicate no reroll available
         $this->reroll_available = 0;
-        $update_reroll = "UPDATE hero SET reroll_available = false WHERE steam_id = ? AND seq_id = ?";
+
+        //Update the database entry to show no reroll is available
+        $update_reroll = "UPDATE hero SET reroll_available = 0 WHERE steam_id = ? AND seq_id = ?";
         if($query = $mysqli->prepare($update_reroll)){
             $query->bind_param("si",$this->steamID_32, $this->seq_num);
             $query->execute();
@@ -164,7 +181,7 @@ class user {
 
                 $this->seq_num++;
                 if(isset($this->steamID_32)){
-                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, true)";
+                    $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, 1)";
                     if($query = $mysqli->prepare($statement)){
                         $query->bind_param("si", $this->steamID_32, $this->seq_num);
                         $query->execute();
@@ -425,6 +442,7 @@ class user {
     	unset($this->heroes);
         $this->seq_num++;
         $this->insert_new_user();
+        $this->add_points_to_user();
     }
 
 
@@ -577,8 +595,22 @@ class user {
         }
     }
 
+    private function get_user_points(){
+
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
+        $select_reroll = "SELECT points FROM ladder WHERE steam_id = ?";
+        if($complete_query = $mysqli->prepare($select_reroll)){
+            $complete_query->bind_param("s",$this->steamID_32);
+            $complete_query->execute();
+            $complete_query->bind_result($this->current_points);
+            $complete_query->fetch();
+            $complete_query->close();
+        }
+    }
+
 /* END GET DATABASE INFORMATION FUNCTIONS */
 
 }//End user class
 
-?>
+?>b
