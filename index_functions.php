@@ -29,7 +29,7 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
     $id = substr($steamdID_64, 3) - 61197960265728;
 
     //get needed things from DB
-    $result = $mysqli->query("SELECT hero_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
+    $result = $mysqli->query("SELECT hero_id_string, complete_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
 
     if (!$result) {
         die($mysqli->error);
@@ -39,9 +39,10 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
     while ($row = mysqli_fetch_assoc($result)) {
         $seq_id = $row['seq_id'];
         $hero_id_string = $row['hero_id_string'];
+        $complete_id_string = $row['complete_id_string'];
         $is_done = $row['is_done'];
 
-        $hero_id_array = explode(",", $hero_id_string);
+        $hero_id_array = array_merge(explode(",", $hero_id_string), explode(",", $complete_id_string));
 
         $image_text = '';
         foreach($hero_id_array as $hero_id){
