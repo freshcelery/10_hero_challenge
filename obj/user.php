@@ -179,7 +179,6 @@ class user {
             }
             else{
 
-                $this->seq_num++;
                 if(isset($this->steamID_32)){
                     $statement = "INSERT IGNORE INTO hero (steam_id, seq_id, reroll_available) VALUES (?, ?, 1)";
                     if($query = $mysqli->prepare($statement)){
@@ -403,12 +402,14 @@ class user {
     *
     */
     private function ten_hero_test(){
-        foreach ($this->matches_after_timestamp as $match => $hero_id){
-            foreach($this->heroes as $hero => $value){
-                if($hero_id == $hero){
-                    $win = $this->did_user_win($match);
-                    if($win){
-                        $this->heroes[$hero] = 1;
+        if(isset($this->matches_after_timestamp)){
+            foreach ($this->matches_after_timestamp as $match => $hero_id){
+                foreach($this->heroes as $hero => $value){
+                    if($hero_id == $hero){
+                        $win = $this->did_user_win($match);
+                        if($win){
+                            $this->heroes[$hero] = 1;
+                        }
                     }
                 }
             }
@@ -428,21 +429,27 @@ class user {
     private function check_if_heroes_remain(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
+        $is_complete = 0;
     	foreach($this->heroes as $hero_id => $completed){
-    		//If the hero is completed, continue iteration
-    		if($completed == 1){
-    			continue;
-    		}
-    		//If the hero isn't completed end the function
-    		else{
-    			return;
-    		}
+            if($hero_id > 0){
+    		  //If the hero is completed, continue iteration
+    		  if($completed == 1){
+    			  $is_complete = 1;
+    		  }
+    		  //If the hero isn't completed end the function
+    		  else{
+    			$is_complete = 0;
+                return;
+    		  }
+            }
     	}
-    	//If all heres are completed unset the heroes array
-    	unset($this->heroes);
-        $this->seq_num++;
-        $this->insert_new_user();
-        $this->add_points_to_user();
+        if($is_complete == 1){
+    	   //If all heres are completed unset the heroes array
+    	   unset($this->heroes);
+            $this->seq_num++;
+            $this->insert_new_user();
+            //$this->add_points_to_user();
+        }
     }
 
 
