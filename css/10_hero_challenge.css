@@ -38,3 +38,13 @@
 	float:right;
 	width:15%;
 }
+
+.history_div{
+	width: 70px;
+	float: left;
+	margin-left:20px;
+}
+
+.hero_image_td{
+	padding: 0px;
+}

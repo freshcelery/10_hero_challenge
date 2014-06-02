@@ -48,7 +48,7 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
         foreach($hero_id_array as $hero_id){
             if(!empty($hero_id)){
                 $hero = new hero($hero_id);
-                $image_text .= '<div class="span1"><img src="'. $hero->get_image() .'" class="img-polaroid"></div>';
+                $image_text .= '<div class="history_div"><img src="'. $hero->get_image() .'" class="img-polaroid"></div>';
             }
         }
 
@@ -60,9 +60,9 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
             $is_done = "In Progress";
         }
         echo "<tr>
-                 <td>{$seq_id}</td>
-                 <td>{$image_text}</td>
-                 <td>{$is_done}</td>
+                 <td class='seq_id_td' >{$seq_id}</td>
+                 <td class='hero_image_td' >{$image_text}</td>
+                 <td class='is_done_td' >{$is_done}</td>
               </tr>";
     }
 }
