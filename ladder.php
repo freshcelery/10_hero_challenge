@@ -5,14 +5,19 @@
  * Time: 1:03 PM
  */
 function get_du_table(){
-
     $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-
     $result = $mysqli->query("SELECT * FROM ladder ORDER BY points DESC");
 
     if (!$result) {
         die($mysqli->error);
     }
+
+    echo "<table class='table-striped'>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Points</th>
+            </tr>";
 
     //for each row returned in query pull outi nfo needed, then create hero objects for every ID. make the table data and print it till out of rows.
     $i = 1;
@@ -29,6 +34,8 @@ function get_du_table(){
 
         $i++;
     }
+
+    echo " </table>";
 }
 
 ?>
@@ -66,16 +73,7 @@ function get_du_table(){
 <hr>
 <div class="jumbotron masthead" style="display: none;">
     <div class="container">
-        <table class='table-striped'>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Points</th>
-            </tr>
-            <?php
-                get_du_table();
-            ?>
-        </table>
+        <?php get_du_table(); ?>
     </div>
 </div>
 </body>

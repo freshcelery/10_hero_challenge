@@ -25,6 +25,40 @@ function check_db_for_first_login($_user, mysqli $mysqli){
     }
 }
 
+function get_du_table(){
+    $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+    $result = $mysqli->query("SELECT * FROM ladder ORDER BY points DESC");
+
+    if (!$result) {
+        die($mysqli->error);
+    }
+
+    echo "<table class='table-striped'>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Points</th>
+            </tr>";
+
+    //for each row returned in query pull outi nfo needed, then create hero objects for every ID. make the table data and print it till out of rows.
+    $i = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $points = $row['points'];
+        $steam_id = '765'.($row['steam_id'] + 61197960265728);
+        $name = $row['name'];
+
+        echo "<tr>
+                 <td>{$i}</td>
+                 <td><a href='http://steamcommunity.com/id/{$steam_id}'>{$name}</a></td>
+                 <td>{$points}</td>
+              </tr>";
+
+        $i++;
+    }
+
+    echo " </table>";
+}
+
 function generate_history_table(mysqli $mysqli, $steamdID_64){
     $id = substr($steamdID_64, 3) - 61197960265728;
 
