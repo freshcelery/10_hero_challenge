@@ -25,7 +25,7 @@ function check_db_for_first_login($_user, mysqli $mysqli){
     }
 }
 
-function get_du_table(){
+function get_ladder(){
     $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
     $result = $mysqli->query("SELECT * FROM ladder ORDER BY points DESC");
 
