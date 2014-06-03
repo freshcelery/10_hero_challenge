@@ -70,7 +70,6 @@ if (isset($_SESSION['SteamID64'])) {
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/10_hero_challenge.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -118,6 +117,19 @@ if (isset($_SESSION['SteamID64'])) {
         });
 
     </script>
+    <!-- Just a note  that < IE8 don't support font-face -->
+    <style>
+        @font-face
+        {
+            font-family: dota10Font;
+            src: url(fonts/glyphicons-halflings-regular.woff);
+        }
+
+        div
+        {
+            font-family:dota10Font;
+        }
+    </style>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
 <div class="loading">
