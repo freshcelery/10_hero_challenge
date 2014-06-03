@@ -127,7 +127,7 @@ if (isset($_SESSION['SteamID64'])) {
 
         div
         {
-            font-family:dota10Font;
+            font-family:dota10Font, Helvetica, Arial, Sans-serif;
         }
     </style>
 </head>
