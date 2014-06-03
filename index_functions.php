@@ -29,7 +29,7 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
     $id = substr($steamdID_64, 3) - 61197960265728;
 
     //get needed things from DB
-    $result = $mysqli->query("SELECT hero_id_string, complete_id_string, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
+    $result = $mysqli->query("SELECT hero_id_string, complete_id_string, create_timestamp, seq_id, is_done FROM hero WHERE steam_id = $id ORDER BY seq_id DESC");
 
     if (!$result) {
         die($mysqli->error);
@@ -41,6 +41,7 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
         $hero_id_string = $row['hero_id_string'];
         $complete_id_string = $row['complete_id_string'];
         $is_done = $row['is_done'];
+        $timestamp = date('F j, Y, g:i:a', $row['create_timestamp']);
 
         $hero_id_array = array_merge(explode(",", $hero_id_string), explode(",", $complete_id_string));
 
@@ -54,10 +55,10 @@ function generate_history_table(mysqli $mysqli, $steamdID_64){
 
         //This can be changed if we add a completed timestamp in, then I can have
         //time completed and in progress
-        if($is_done){
-            $is_done = "Completed";
-        } else {
+        if($is_done == 0){
             $is_done = "In Progress";
+        } else {
+            $is_done = $timestamp;
         }
         echo "<tr>
                  <td class='seq_id_td' >{$seq_id}</td>
