@@ -101,6 +101,22 @@ if (isset($_SESSION['SteamID64'])) {
                 location.reload(true);
             }
         }); // end document ready
+
+        //Top buttons decide displayed content
+        $(document).ready(function(){
+            $("#ladder").hide(); // hide ladder when document ready
+
+            $("#profile_anchor").click(function(){
+                $("#profile").show();
+                $("#ladder").hide();
+            });
+
+            $("#ladder_anchor").click(function(){
+                $("#profile").hide();
+                $("#ladder").show();
+            });
+        });
+
     </script>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" style="padding:40px;">
@@ -114,11 +130,11 @@ if (isset($_SESSION['SteamID64'])) {
             <ul class="nav">
                 <?php
                 if (isset($user)) {
-                    echo '<li class="active"><a href="#">Profile</a></li>';
+                    echo '<li><a id="profile_anchor" href="#">Profile</a></li>';
                 } else {
                     echo '<li><a href="?login">Profile</a></li>';
                 }?>
-                <li><a href="#">Leaderboard</a></li>
+                <li><a id="ladder_anchor" href="#">Leaderboard</a></li>
             </ul>
 
             <ul class="nav pull-right">
@@ -131,45 +147,52 @@ if (isset($_SESSION['SteamID64'])) {
 <hr>
 <div class="jumbotron masthead" style="display: none;">
     <div class="container">
-        <?php
-        if (isset($user)) {
-            //get info from ladder for user
-                $ladder_stmt = $mysqli->prepare("select * from ladder where steam_id = ?");
-                $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
-                $ladder_stmt->execute();
-                $ladder_results = $ladder_stmt->fetch();
+        <div id="profile">
+            <?php
+            if (isset($user)) {
+                //get info from ladder for user
+                    $ladder_stmt = $mysqli->prepare("select * from ladder where steam_id = ?");
+                    $ladder_stmt->bind_param("s",$user['response']['players'][0]['steamid']);
+                    $ladder_stmt->execute();
+                    $ladder_results = $ladder_stmt->fetch();
 
-            echo "<div class=\"row\">";
-                echo "<div class=\"userName\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
-                echo "<div class=\"span1 offset10\"><h4>Points: {$ladder_results['points']}</h4></div>";
-                echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
-                echo '<div class="span12"><hr></div>';
-                echo '<div class="span12 heroes_div"><h5>Your 10 heroes</h5>';
-                generate_current_hero_table($_SESSION['SteamID64']);
-                echo'</div>';
-                echo '<div class="span12">';
-                make_reroll_button($_SESSION['SteamID64']);
-                echo '</div>';
+                echo "<div class=\"row\">";
+                    echo "<div class=\"userName\"><h3>{$user['response']['players'][0]['personaname']}</h3></div>";
+                    echo "<div class=\"span1 offset10\"><h4>Points: {$ladder_results['points']}</h4></div>";
+                    echo "<div class=\"span5\"><img src=\"{$user['response']['players'][0]['avatarfull']}\" class=\"img-polaroid\"></div>";
+                    echo '<div class="span12"><hr></div>';
+                    echo '<div class="span12 heroes_div"><h5>Your 10 heroes</h5>';
+                    generate_current_hero_table($_SESSION['SteamID64']);
+                    echo'</div>';
+                    echo '<div class="span12">';
+                    make_reroll_button($_SESSION['SteamID64']);
+                    echo '</div>';
 
-                echo "<div class=\"span12\"><h5>History</h5></div>
-                <div class=\"span12\">
-                    <table class=\"table\">
-                        <tr>
-                            <th>Set #</th>
-                            <th>Heroes</th>
-                            <th>Completed On</th>
-                        </tr>";
-                generate_history_table($mysqli, $_SESSION['SteamID64']);
-                echo "</table>";
-                echo "</div></div>";
-
-
+                    echo "<div class=\"span12\"><h5>History</h5></div>
+                    <div class=\"span12\">
+                        <table class=\"table\">
+                            <tr>
+                                <th>Set #</th>
+                                <th>Heroes</th>
+                                <th>Completed On</th>
+                            </tr>";
+                    generate_history_table($mysqli, $_SESSION['SteamID64']);
+                    echo "</table>";
+                    echo "</div></div>";
 
 
-        } else {
-            echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
-        }
-        ?>
+
+
+            } else {
+                echo  '<h1 style="text-align:center;">DOTA 10 Hero Challenge</h1><p style="text-align:center;">Please log in using Steam</p>';
+            }
+            ?>
+        </div>
+        <div id="ladder">
+            <?php
+            get_ladder();
+            ?>
+        </div>
     </div>
 </div>
 </body>
