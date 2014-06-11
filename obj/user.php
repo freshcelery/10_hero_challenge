@@ -284,15 +284,15 @@ class user {
                 $int_timestamp = intval($matches['start_time']);
                 if($int_timestamp > $this->current_timestamp){
                     foreach($matches['players'] as $players){
+                        $match_id = $matches['match_id'];
                         if($players['account_id'] == $this->steamID_32){
                             $hero = $players['hero_id'];
+                            $this->matches_after_timestamp[$match_id] = $hero;
                         }
                         else{
                             continue;
                         }
                     }
-                    $match_id = $matches['match_id'];
-                    $this->matches_after_timestamp[$match_id] = $hero;
 
                     //Set timestamp to now to avoid re-checking previously checked matches
                     $this->set_timestamp();
