@@ -73,7 +73,7 @@ function get_ladder($_id){
     $ladder_table .= " </table>";
 
 
-    echo "<h3>Your place</h3>";
+    echo "<h5>Your place</h5>";
     echo $ladder_user_place;
     echo "<hr>";
     echo $ladder_table;

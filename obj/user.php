@@ -255,6 +255,7 @@ class user {
             $q->close();
         }
 
+
     	// Grab the current timestamp from the database
         $select_time = "SELECT create_timestamp FROM hero WHERE steam_id = ? AND seq_id = ?";
         if($query = $mysqli->prepare($select_time)){
@@ -383,13 +384,13 @@ class user {
     private function hero_played($match_id){
 
         $json_player = file_get_contents('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=CD44403C3CEDB535EFCEFC7E64F487C6&account_id='.$this->steamID);
-        $json_decoded_player = (json_decode($json_player, true));
+        $json_decoded_player = json_decode($json_player, true);
 
 
 
         foreach($json_decoded_player['result']['matches'] as $matches){
             foreach($matches['players'] as $player){
-                if($player['account_id'] == $_steamID_32){
+                if($player['account_id'] == $this->steamID_32){
                     return $player['hero_id'];
                 }
             }
@@ -452,6 +453,8 @@ class user {
     }
 
     private function add_points_to_user(){
+        $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
+
         $this->get_user_points();
         $this->current_points += 100;
 
@@ -476,7 +479,8 @@ class user {
     */
     private function get_seq_from_db(){
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
-        $seq_num_array;
+
+        $seq_num_array = null;
         $select_from_db = "SELECT seq_id FROM hero WHERE steam_id = ?";
         if($select_query = $mysqli->prepare($select_from_db)){
             $select_query->bind_param("s", $this->steamID_32);
@@ -508,8 +512,8 @@ class user {
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
         
         // Create 2 empty strings for handling the delimited input
-        $completed_heroes;
-        $uncompleted_heroes;
+        $completed_heroes = "";
+        $uncompleted_heroes = "";
         if(count($this->heroes) > 0){
             //Fill the strings with the list of completed or uncompleted heroes, delimited by a comma
             foreach($this->heroes as $hero => $completed){
@@ -549,8 +553,8 @@ class user {
         $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
 
         // Create empty variables
-        $completed_heroes;
-        $uncompleted_heroes;
+        $completed_heroes = '';
+        $uncompleted_heroes = '';
         $completed_hero_array = Array();
         $uncompleted_hero_array = Array();
 
