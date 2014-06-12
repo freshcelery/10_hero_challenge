@@ -202,7 +202,7 @@ if (isset($_SESSION['SteamID64'])) {
         </div>
         <div id="ladder">
             <?php
-            get_ladder();
+            get_ladder($_SESSION['SteamID64']);
             ?>
         </div>
     </div>

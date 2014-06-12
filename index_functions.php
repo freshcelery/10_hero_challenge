@@ -25,7 +25,7 @@ function check_db_for_first_login($_user, mysqli $mysqli){
     }
 }
 
-function get_ladder(){
+function get_ladder($_id){
     $mysqli = new mysqli('localhost','dotakeeg_admin','dota10','dotakeeg_admin');
     $result = $mysqli->query("SELECT * FROM ladder ORDER BY points DESC");
 
@@ -33,21 +33,35 @@ function get_ladder(){
         die($mysqli->error);
     }
 
-    echo "<table class='table-striped'>
+    $ladder_user_place = "";
+    $ladder_table = "<table class='table-striped'>
             <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Points</th>
             </tr>";
 
-    //for each row returned in query pull outi nfo needed, then create hero objects for every ID. make the table data and print it till out of rows.
+    //for each row returned in query pull out info needed, then create hero objects for every ID. make the table data and print it till out of rows.
     $i = 1;
     while ($row = mysqli_fetch_assoc($result)) {
         $points = $row['points'];
         $steam_id = '765'.($row['steam_id'] + 61197960265728);
         $name = $row['name'];
 
-        echo "<tr>
+        //check to see if this entry is the user's and save it so it's at thet op.
+        if($steam_id = $_id){
+            $ladder_user_place .=
+            "<table class='table'>
+              <tr>
+                 <td>{$i}</td>
+                 <td><a href='http://steamcommunity.com/id/{$steam_id}'>{$name}</a></td>
+                 <td>{$points}</td>
+              </tr>
+            </table>";
+        }
+
+
+        $ladder_table .= "<tr>
                  <td>{$i}</td>
                  <td><a href='http://steamcommunity.com/id/{$steam_id}'>{$name}</a></td>
                  <td>{$points}</td>
@@ -56,7 +70,13 @@ function get_ladder(){
         $i++;
     }
 
-    echo " </table>";
+    $ladder_table .= " </table>";
+
+
+    echo "<h3>Your place</h3>";
+    echo $ladder_user_place;
+    echo "<hr>";
+    echo $ladder_table;
 }
 
 function generate_history_table(mysqli $mysqli, $steamdID_64){
